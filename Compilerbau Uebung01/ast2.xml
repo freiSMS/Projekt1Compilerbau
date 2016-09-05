@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<LET>
+	<DEF>
+		<FUNC>
+			<ID attr="f"></ID>
+			<PARAMS>
+				<PARAMS>
+					<PARAMS>
+						<ID attr="x"></ID>
+						<ID attr="y"></ID>
+					</PARAMS>
+					<ID attr="z"></ID>
+				</PARAMS>
+			</PARAMS>
+			<BODY>
+				<SEMI>
+					<ASSIGN>
+						<ID attr="x"></ID>
+						<OP attr="+">
+							<READ>
+								<ID attr="y"></ID>
+							</READ>
+							<READ>
+								<ID attr="z"></ID>
+							</READ>
+						</OP>
+					</ASSIGN>
+					<CALL>
+						<ID attr="f"></ID>
+						<ARGS>
+							<ARGS>
+								<ARGS>
+									<SEMI>
+										<ASSIGN>
+											<ID attr="z"></ID>
+											<CONST attr="3"></CONST>
+										</ASSIGN>
+										<CONST attr="4"></CONST>
+									</SEMI>
+								</ARGS>
+								<READ>
+									<ID attr="y"></ID>
+								</READ>
+							</ARGS>
+							<READ>
+								<ID attr="z"></ID>
+							</READ>
+						</ARGS>
+					</CALL>
+				</SEMI>
+			</BODY>
+		</FUNC>
+	</DEF>
+	<BODY>
+		<CALL>
+			<ID attr="f"></ID>
+			<ARGS>
+				<ARGS>
+					<ARGS>
+						<CONST attr="2"></CONST>
+					</ARGS>
+					<CONST attr="3"></CONST>
+				</ARGS>
+				<CONST attr="4"></CONST>
+			</ARGS>
+		</CALL>
+	</BODY>
+</LET>
