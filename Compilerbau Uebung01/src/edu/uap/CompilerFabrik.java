@@ -320,7 +320,16 @@ public class CompilerFabrik {
 	
 	public static Vector<Instruction> code(LetNode letNode, int nl, HashMap<String, AddressPair> rho)	{
 		Vector<Instruction> tramCode = new Vector<Instruction>();
-		HashMap<String, AddressPair> rho2 = ((DefNode)letNode.getChildren().get(0)).elab_def(rho, nl);
+		
+		// nl wird in Aufgabe 2 zu nl +1
+		Elab elab = ((DefNode)letNode.getChildren().get(0)).elab_def(rho, nl+1, 0);	//Für jeden Def Node ist die 0 die erste freie Stelle, da sie einen eigenen Speicher hat??!?
+		HashMap<String, AddressPair> rho2 = elab.rho;
+		int nav = elab.nav;	//gibt die Anzahl der zu erzeugenden const_befehle +1 an
+		for (int i= nav; i>0; i--){
+			tramCode.add(new Instruction(Instruction.CONST, 0));
+		}
+		
+		
 		addLabel(nl, rho);
 		
 		//Hilfsvariablen für Tramlabel
@@ -370,6 +379,57 @@ public class CompilerFabrik {
 		tramCode.addAll(code(bodyNode.getChildren().get(0), nl, rho));
 		return tramCode;
 	}
+	
+	
+	//Aufgabe2 -> neue code() Funktionen
+	public static Vector<Instruction> code(VarNode varNode, int nl, HashMap<String, AddressPair> rho)	{
+		Vector<Instruction> tramCode = new Vector<Instruction>();
+		
+		//Hilfvariablen und Speicherabfrage:
+		Node e = varNode.getChildren().get(1);
+		String id = varNode.getChildren().get(0).getAttribute().toString();
+		AddressPair idSpeicherInhalt = rho.get(id);
+		
+		
+		
+		tramCode.addAll(code(e, idSpeicherInhalt.nl, rho));
+		tramCode.add(new Instruction(Instruction.STORE,(Integer) idSpeicherInhalt.loc, 0));
+		return tramCode;
+	}
+	
+	
+	public static Vector<Instruction> code(LazyNode lazyNode, int nl, HashMap<String, AddressPair> rho)	{
+		Vector<Instruction> tramCode = new Vector<Instruction>();
+		
+		//Labelerzeugung und Speicherabfrage der ID
+		addLabel(nl, rho);
+		String label1 = Integer.toString(labelCount);
+		addLabel(nl,rho);
+		String label2 = Integer.toString(labelCount);
+		
+		Node e = lazyNode.getChildren().get(1);
+		String id = lazyNode.getChildren().get(0).getAttribute().toString();
+		AddressPair spr = rho.get(id);
+		
+		
+				
+		
+		//Codeerzeugung
+		Instruction einzusetzendeInstr = new Instruction(Instruction.GOTO, -1);
+		tramCode.add( new Instruction(Instruction.TRAMLABELCALLER, label1, einzusetzendeInstr, 1 ));
+		tramCode.add(new Instruction(Instruction.TRAMLABEL, label2));
+		tramCode.addAll(code(e, spr.nl, rho));
+		tramCode.add(new Instruction(Instruction.LAZYRETURN));
+		tramCode.add(new Instruction(Instruction.TRAMLABEL, label1));
+		
+		Instruction einzusetzendeInstruction = new Instruction(Instruction.LAZY, (Integer) spr.loc, -1);
+		tramCode.add(new Instruction(Instruction.TRAMLABELCALLER, label2, einzusetzendeInstruction, 2));
+		return tramCode;
+		
+		
+	}
+	
+	
 	
 	public static Vector<Instruction> replaceTramLabels(Vector<Instruction> altProgramm)	{
 		HashMap<String, Integer> rho = new HashMap<String, Integer>();

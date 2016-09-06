@@ -3,6 +3,8 @@ package edu.uap.nodes;
 
 import java.util.LinkedList;
 
+import edu.uap.Elab;
+
 public class Node
 {
     private String type;
@@ -25,6 +27,10 @@ public class Node
         this.children = new LinkedList<Node>();
     }
 
+    public Elab elab_def(Elab elab, int nl)	{
+    	System.out.println("Wird in den entsprechenden Klassen überschrieben");
+    	return elab;
+    }
 
     public String getType()
     {

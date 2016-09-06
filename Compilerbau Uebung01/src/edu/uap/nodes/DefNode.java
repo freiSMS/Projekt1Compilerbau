@@ -1,9 +1,11 @@
 
 package edu.uap.nodes;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import edu.uap.AddressPair;
+import edu.uap.Elab;
 
 public class DefNode extends Node
 {
@@ -12,7 +14,7 @@ public class DefNode extends Node
         super("DEF");
     }
     
-    public HashMap<String, AddressPair> elab_def(HashMap<String, AddressPair> rho, int nl)	{
+/*    public HashMap<String, AddressPair> elab_def(HashMap<String, AddressPair> rho, int nl)	{
     	//....
     	HashMap<String,AddressPair> rho2 = (HashMap<String, AddressPair>) rho.clone();
     	for(int i=0; i< this.getChildren().size(); i++)	{
@@ -21,5 +23,20 @@ public class DefNode extends Node
     	}
     	
     	return rho2;
+    }*/
+    
+    public Elab elab_def(HashMap<String, AddressPair> rho, int nl, int nav)	{
+    	//....
+    	
+    	HashMap<String,AddressPair> rho2 = (HashMap<String, AddressPair>) rho.clone();
+    	Elab tmp = new Elab(rho2, nav);
+    	
+    	for(int i=0; i< this.getChildren().size(); i++)	{
+    		
+    		tmp = (this.getChildren().get(i)).elab_def(tmp, nl);
+    		//rho2 = ((FuncNode)this.getChildren().get(i)).elab_def(rho2, nl);
+    	}
+    	
+    	return tmp;
     }
 }

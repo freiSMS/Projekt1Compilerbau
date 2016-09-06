@@ -198,7 +198,7 @@ public class abstractMachine {
 		stack.set(PP +k, new LazzyObject(top+1, abstractMachine.closure));
 		stack.set(top+1, new LazzyObject(p,abstractMachine.pointer));
 		stack.set(top+2, new LazzyObject(FP,abstractMachine.integer));  // Merke Werte der Register zum Zeitpunkt der Deklaration 
-        stack.set(top+2, new LazzyObject(PP,abstractMachine.integer));
+        stack.set(top+3, new LazzyObject(PP,abstractMachine.integer));
         stack.set(top, stack.get(top+3)); 
         PC = PC + 1; 
 	}

@@ -43,6 +43,11 @@ public class Instruction
 	//Im zweiten Schritt werden alle die Instruktionen erneut durchlaufen. Bei jedem TramLabelCaller
 	// wird im Speicher nach dem in Args1 gespeicherte Label gesucht und bei der folgenden Instruction 
 	// anstatt der dort stehenden Sprungadresse -1 eingefügt. Dann wird der TramLabelCaller entfernt.
+	
+	public final static int LAZYRETURN = 20;
+	public final static int LAZY = 19;
+	
+	
 
 	//Zusatzkonstruktor für funcNodes (hier sind Strings und nicht int die keys
 	public Instruction(int opcode, String key)	{

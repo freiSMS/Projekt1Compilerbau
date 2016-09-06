@@ -1,9 +1,11 @@
-rem @echo off
-rem "C:\Program Files\Java\jre1.8.0_91\bin\java" -jar lib/jflex-1.6.1.jar src\edu\uap\tripla.flex
-rem "C:\Program Files\Java\jre1.8.0_91\bin\java" -jar lib/java-cup-11a.jar src\edu\uap\tripla.cup
+java -jar lib/jflex-1.6.1.jar src\edu\uap\tripla.flex;
+java -jar lib/java-cup-11a.jar src\edu\uap\tripla.cup
 
-rem copy parser.java src\edu\uap
-rem copy sym.java src\edu\uap
+zusammen:
+java -jar lib/jflex-1.6.1.jar src\edu\uap\tripla.flex; java -jar lib/java-cup-11a.jar src\edu\uap\tripla.cup;
+
+copy parser.java src\edu\uap;
+copy sym.java src\edu\uap;
 
 rem "C:\Program Files\Java\jdk1.8.0_91\bin\javac" -classpath .;src\;lib\java-cup-11a.jar src\edu\uap\*.java
 
