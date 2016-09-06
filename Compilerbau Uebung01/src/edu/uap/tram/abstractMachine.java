@@ -193,6 +193,15 @@ public class abstractMachine {
 		top--;
 		PC++;
 	}
+	
+	private void lazy( int k, int p)	{
+		stack.set(PP +k, new LazzyObject(top+1, abstractMachine.closure));
+		stack.set(top+1, new LazzyObject(p,abstractMachine.pointer));
+		stack.set(top+2, new LazzyObject(FP,abstractMachine.integer));  // Merke Werte der Register zum Zeitpunkt der Deklaration 
+        stack.set(top+2, new LazzyObject(PP,abstractMachine.integer));
+        stack.set(top, stack.get(top+3)); 
+        PC = PC + 1; 
+	}
 
 	private void LOAD(int k, int d) {
 		int spp = SPP(d, PP, FP);
@@ -215,7 +224,12 @@ public class abstractMachine {
 	
 	
 	private void LAZYRETURN()	{
-		
+		PC = stack.get(top -4).val;
+		stack.set(stack.get(top -3).val, stack.get(top));
+		FP = stack.get(top -2).val;
+		PP = stack.get(top -1).val;
+		stack.set(stack.get(top-4).val, stack.get(top));	//****Nochmal prüfen (siehe Folie)
+		top = top -4;
 	}
 
 	private int SPP(int d, int pp, int fp) {
@@ -237,8 +251,6 @@ public class abstractMachine {
 	private void ADD() {
 		if(stack.get(top-1).tag != abstractMachine.integer || stack.get(top).tag != abstractMachine.integer)	{
 			System.out.println("fehler");
-			
-			//error();	//****noch nachtragen
 			System.exit(-1);
 		}
 		stack.set(top - 1, new LazzyObject(stack.get(top - 1).val + stack.get(top).val, abstractMachine.integer));
@@ -248,6 +260,10 @@ public class abstractMachine {
 	
 
 	private void SUB() {
+		if(stack.get(top-1).tag != abstractMachine.integer || stack.get(top).tag != abstractMachine.integer)	{
+			System.out.println("fehler");
+			System.exit(-1);
+		}
 		stack.set(top - 1, new LazzyObject(stack.get(top - 1).val - stack.get(top).val, abstractMachine.integer));
 		stack.remove(top);
 		top--;
@@ -255,6 +271,10 @@ public class abstractMachine {
 	}
 
 	private void MUL() {
+		if(stack.get(top-1).tag != abstractMachine.integer || stack.get(top).tag != abstractMachine.integer)	{
+			System.out.println("fehler");
+			System.exit(-1);
+		}
 		stack.set(top - 1, new LazzyObject(stack.get(top - 1).val * stack.get(top).val, abstractMachine.integer));
 		stack.remove(top);
 		top--;
@@ -262,22 +282,22 @@ public class abstractMachine {
 	}
 
 	private void DIV() {
+		if(stack.get(top-1).tag != abstractMachine.integer || stack.get(top).tag != abstractMachine.integer)	{
+			System.out.println("fehler");
+			System.exit(-1);
+		}
 		stack.set(top - 1, new LazzyObject(stack.get(top - 1).val / stack.get(top).val, abstractMachine.integer));
 		stack.remove(top);
 		top--;
 		PC++;
 	}
 	
-	private void lazy( int k, int p)	{
-		stack.set(PP +k, new LazzyObject(top+1, abstractMachine.closure));
-		stack.set(top+1, new LazzyObject(p,abstractMachine.pointer));
-		stack.set(top+2, new LazzyObject(FP,abstractMachine.integer));  // Merke Werte der Register zum Zeitpunkt der Deklaration 
-        stack.set(top+2, new LazzyObject(PP,abstractMachine.integer));
-        stack.set(top, stack.get(top+3)); 
-        PC = PC + 1; 
-	}
 
 	private void LT() {
+		if(stack.get(top-1).tag != abstractMachine.integer || stack.get(top).tag != abstractMachine.integer)	{
+			System.out.println("fehler");
+			System.exit(-1);
+		}
 		if (stack.get(top -1).val < stack.get(top).val) {
 			stack.set(top - 1, new LazzyObject(1, abstractMachine.integer));
 		} else {
@@ -289,6 +309,10 @@ public class abstractMachine {
 	}
 
 	private void GT() {
+		if(stack.get(top-1).tag != abstractMachine.integer || stack.get(top).tag != abstractMachine.integer)	{
+			System.out.println("fehler");
+			System.exit(-1);
+		}
 		if (stack.get(top - 1).val > stack.get(top).val) {
 			stack.set(top - 1, new LazzyObject(0, abstractMachine.integer));
 		} else {
@@ -300,6 +324,10 @@ public class abstractMachine {
 	}
 
 	private void EQ() {
+		if(stack.get(top-1).tag != abstractMachine.integer || stack.get(top).tag != abstractMachine.integer)	{
+			System.out.println("fehler");
+			System.exit(-1);
+		}
 		if (stack.get(top - 1).val == stack.get(top).val) {
 			stack.set(top - 1, new LazzyObject(1, abstractMachine.integer));
 		} else {
@@ -311,6 +339,10 @@ public class abstractMachine {
 	}
 
 	private void NEQ() {
+		if(stack.get(top-1).tag != abstractMachine.integer || stack.get(top).tag != abstractMachine.integer)	{
+			System.out.println("fehler");
+			System.exit(-1);
+		}
 		if (stack.get(top - 1).val != stack.get(top).val) {
 			stack.set(top - 1, new LazzyObject(1, abstractMachine.integer));
 		} else {
