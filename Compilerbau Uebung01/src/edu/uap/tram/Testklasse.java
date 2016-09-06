@@ -1,3 +1,4 @@
+package edu.uap.tram;
 public class Testklasse {
 
 	public static void main(String[] args) {
