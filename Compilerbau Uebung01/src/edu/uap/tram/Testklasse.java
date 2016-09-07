@@ -1,4 +1,7 @@
 package edu.uap.tram;
+
+import edu.uap.Instruction;
+
 public class Testklasse {
 
 	public static void main(String[] args) {

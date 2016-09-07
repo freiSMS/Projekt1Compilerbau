@@ -288,11 +288,12 @@ public class CompilerFabrik {
 		String idName = call.getChildren().get(0).getAttribute().toString();
 		int anzahlFunktionsparameter = call.getChildren().size() -1; //Da das erste Kind der IDNode ist
 		AddressPair idSpeicherInhalt = rho.get(idName);
+		String label = idSpeicherInhalt.loc.toString();
 		int nestingLevelDifferenz = nl - idSpeicherInhalt.nl;
 		int spaetereEinsetzposition = 2;
 		Instruction invokeInstruction = new Instruction(Instruction.INVOKE, anzahlFunktionsparameter, -1, nestingLevelDifferenz);	//idName muss später mit der Instruktionsnummer dieses Labels ersetzt werden
 				
-		tramCode.add(new Instruction(Instruction.TRAMLABELCALLER, idName, invokeInstruction, spaetereEinsetzposition));
+		tramCode.add(new Instruction(Instruction.TRAMLABELCALLER, label, invokeInstruction, spaetereEinsetzposition));
 		//nl++;	//???? Nur die Funktionsdefinitionen bekommen bei der Definition ein höheres Nesting Level??
 		return tramCode;
 	}
@@ -322,7 +323,9 @@ public class CompilerFabrik {
 		Vector<Instruction> tramCode = new Vector<Instruction>();
 		
 		// nl wird in Aufgabe 2 zu nl +1
+		int labelCountVorher = labelCount;
 		Elab elab = ((DefNode)letNode.getChildren().get(0)).elab_def(rho, nl+1, 0);	//Für jeden Def Node ist die 0 die erste freie Stelle, da sie einen eigenen Speicher hat??!?
+		int labelCountDanach = labelCount - labelCountVorher;
 		HashMap<String, AddressPair> rho2 = elab.rho;
 		int nav = elab.nav;	//gibt die Anzahl der zu erzeugenden const_befehle an (da nav ab null hochzaehlt)
 		for (int i= nav; i>0; i--){
@@ -348,7 +351,7 @@ public class CompilerFabrik {
 		tramCode.add(new Instruction(Instruction.RETURN));
 		
 		tramCode.add(new Instruction(Instruction.TRAMLABEL, Integer.toString(label1)));
-		Instruction einsetzInstruction2 = new Instruction(Instruction.INVOKE, nav, -1);	//nav entspricht der Anzahl der lokalen Variablen
+		Instruction einsetzInstruction2 = new Instruction(Instruction.INVOKE, nav, -1, 0);	//nav entspricht der Anzahl der lokalen Variablen
 		ersatzStelle = 2;
 		tramCode.add(new Instruction(Instruction.TRAMLABELCALLER, label2, einsetzInstruction2, ersatzStelle));
 
@@ -463,7 +466,7 @@ public class CompilerFabrik {
 			//Und entferne das Label
 			Instruction tmp = altProgramm.get(instruktionsNummer);
 			if(((Integer)tmp.opcode).equals(Instruction.TRAMLABEL)){
-				rho.put(tmp.key, instruktionsNummer+1);
+				rho.put(tmp.key, instruktionsNummer);
 				altProgramm.remove(instruktionsNummer);
 			}
 			else	{

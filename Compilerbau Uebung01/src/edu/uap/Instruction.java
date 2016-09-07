@@ -274,7 +274,7 @@ public class Instruction
 	 * Annahmen: Variable x durch Kellerzelle 0 und Variable y durch Kellerzelle 1 implementiert, 
 	 *           sowie PP=0, FP=0 und TOP=1.
 	 */
-	static Instruction[] program1 = new Instruction[] {
+	public static Instruction[] program1 = new Instruction[] {
 			new Instruction(Instruction.CONST, 6), // value for x
 			new Instruction(Instruction.STORE, 0, 0), // store x
 			new Instruction(Instruction.LOAD, 0, 0), 
@@ -291,7 +291,7 @@ public class Instruction
 	 * Quellkode: x=10; if(x == 0) 100 else 200; 3 
 	 * Annahmen: Variable x durch Kellerzelle 0 implementiert, sowie PP=0, FP=0 und TOP=0.
 	 */
-	static Instruction[] program2 = new Instruction[] { 
+	public static Instruction[] program2 = new Instruction[] { 
 			new Instruction(Instruction.CONST, 10),
 			new Instruction(Instruction.STORE, 0, 0),
 			new Instruction(Instruction.LOAD, 0, 0),
@@ -311,7 +311,7 @@ public class Instruction
 	 * Annahmen: Das Argument von square wird durch Kellerzelle 0 repraesentiert, sowie PP=0, FP=0 
 	 *           und TOP=-1
 	 */
-	static Instruction[] program3 = new Instruction[] {
+	public static Instruction[] program3 = new Instruction[] {
 			new Instruction(Instruction.CONST, 10),
 			new Instruction(Instruction.INVOKE, 1, 3, 0), // --> square
 			// return
@@ -335,7 +335,7 @@ public class Instruction
 	 * Annahmen: Die Argumente von wrapper werden durch die Kellerzellen 0 und 1 repraesentiert, 
 	 *           sowie PP=0, FP=0 und TOP=-1
 	 */
-	static Instruction[] program4 = new Instruction[] {
+	public static Instruction[] program4 = new Instruction[] {
 			new Instruction(Instruction.CONST, 4),
 			new Instruction(Instruction.CONST, 10),
 			new Instruction(Instruction.INVOKE, 2, 4, 0), // --> wrapper
@@ -366,7 +366,7 @@ public class Instruction
 	//Das Ergebis wird durch Kellerzelle 1 repräsentiert.
 		//Der Algorithmus geht so vor, dass die Fakultätsfunktion rekursiv aufgerufen wird (jeweils mit x-1) bis ein Aufruf für x=2 erfolgt.
 		//Die Funktion liefert das Ergebnis 2 zurück, woraufhin die rekursiv wartenden Funktion nacheinader ihre Multiplikationsoperationen ausführen können.
-	static Instruction[] fakultaetsProgramm = new Instruction[]	{
+	public static Instruction[] fakultaetsProgramm = new Instruction[]	{
 			new Instruction(Instruction.CONST, 4), //0
 			new Instruction(Instruction.STORE , 0, 0),	//1
 			new Instruction(Instruction.LOAD, 0, 0), //2

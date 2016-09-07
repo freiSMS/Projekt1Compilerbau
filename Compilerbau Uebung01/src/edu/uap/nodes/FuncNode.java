@@ -18,12 +18,11 @@ public class FuncNode extends Node
     //Funktion, welche den Speicher des Funktionsaufruf berechnet und zurückgibt
     @Override
     public Elab elab_def(Elab elab, int nl)	{
-    	//....
-    	CompilerFabrik.addLabel(nl, rho);		//ist das richtig? hier ist keine zahl der key
-    	int label = CompilerFabrik.labelCount;
     	
     	int nav = elab.nav;
     	HashMap<String, AddressPair> rho = elab.rho;
+    	CompilerFabrik.addLabel(nl, rho);		//ist das richtig? hier ist keine zahl der key
+    	int label = CompilerFabrik.labelCount;
     	
     	IDNode d1 = (IDNode) this.getChildren().get(0);
     	rho.put(d1.getAttribute().toString(), new AddressPair(label, nl ));	//Für jedes dieser Kinder muss eine PseudoInstruktion eingefügt werden

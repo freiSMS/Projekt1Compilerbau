@@ -31,7 +31,7 @@ public class abstractMachine {
 		PC = 0;
 		PP = 0;
 		FP = 0;
-		top = 0;
+		top = -1;
 		prog = p;
 		initialized = true;
 	}
@@ -51,7 +51,7 @@ public class abstractMachine {
 		PC = 0;
 		PP = 0;
 		FP = 0;
-		top = 0;
+		top = -1;
 	}
 
 	public void inititalize(Instruction[] p) {
@@ -144,6 +144,7 @@ public class abstractMachine {
 				case Instruction.RETURN:
 					RETURN();
 					break;
+					
 				default:
 					System.out.println("Die Instruktion an Position " + PC
 							+ " wurde nicht als gültiger Maschinenbefehl erkannt.");
@@ -156,23 +157,32 @@ public class abstractMachine {
 				for (LazzyObject s: stack)	{
 					deb.append(s.val + ", ");
 				}
-				System.out.println("Stack: " + deb.toString() + " \n  " +
-						"oberstes Stackelement = " + stack.get(top) + ", Top = " + top
+				
+				deb.append("\n oberstes Stackelement: ");
+				if(stack.size()>0)	{
+					deb.append(stack.get(top).val);
+				}
+				
+				System.out.println("Stack: " + deb.toString() + ", Top = " + top
 								+ ", PC = " + PC + ", PP: " + PP + ", FP: " + FP);
 				
 				
 				// Ausgabe der Variablen pro Schritt, falls der Debuger eingeschaltet ist. 
 				if (debug) {
 
-					System.out.println("Stack: " + deb.toString() + " \n  " +
-							"oberstes Stackelement = " + stack.get(top) + ", Top = " + top
-									+ ", PC = " + PC + ", PP: " + PP + ", FP: " + FP);
-					JOptionPane.showMessageDialog(null,
+/*					System.out.println("Stack: " + deb.toString() + ", Top = " + top
+									+ ", PC = " + PC + ", PP: " + PP + ", FP: " + FP);*/
+/*					JOptionPane.showMessageDialog(null,
+							"Stack: " + deb.toString() + ", Top = " + top
+									+ ", PC = " + PC + ", PP: " + PP + ", FP: " + FP,
+							"Debugmodus", JOptionPane.INFORMATION_MESSAGE);*/
+
+					/*JOptionPane.showMessageDialog(null,
 							"Stack: " + deb.toString() + " \n  " +
 							"oberstes Stackelement = " + stack.get(top-1) + ", Top = " + top
 									+ ", PC = " + PC + ", PP: " + PP + ", FP: " + FP,
 							"Debugmodus", JOptionPane.INFORMATION_MESSAGE);
-
+*/
 				}
 			}
 			System.out.println("Die Ausführung des Programmes war erfolgreich. Währendessen gab es "
