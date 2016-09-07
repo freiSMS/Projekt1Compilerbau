@@ -324,7 +324,7 @@ public class CompilerFabrik {
 		// nl wird in Aufgabe 2 zu nl +1
 		Elab elab = ((DefNode)letNode.getChildren().get(0)).elab_def(rho, nl+1, 0);	//Für jeden Def Node ist die 0 die erste freie Stelle, da sie einen eigenen Speicher hat??!?
 		HashMap<String, AddressPair> rho2 = elab.rho;
-		int nav = elab.nav;	//gibt die Anzahl der zu erzeugenden const_befehle +1 an
+		int nav = elab.nav;	//gibt die Anzahl der zu erzeugenden const_befehle an (da nav ab null hochzaehlt)
 		for (int i= nav; i>0; i--){
 			tramCode.add(new Instruction(Instruction.CONST, 0));
 		}
@@ -333,14 +333,25 @@ public class CompilerFabrik {
 		addLabel(nl, rho);
 		
 		//Hilfsvariablen für Tramlabel
-		int label = labelCount;
+		int label1 = labelCount;
 		int ersatzStelle = 1;
 		Instruction einsetzInstruktion = new Instruction(Instruction.GOTO, -1);
 		
-		tramCode.add(new Instruction(Instruction.TRAMLABELCALLER, Integer.toString(label), einsetzInstruktion, ersatzStelle));
-		tramCode.addAll(code(letNode.getChildren().get(0),nl, rho2));	//Übersetzung DefNode
-		tramCode.add(new Instruction(Instruction.TRAMLABEL, Integer.toString(label)));
-		tramCode.addAll(code(letNode.getChildren().get(1),nl, rho2));	//Übersetzung BodyNode
+		tramCode.add(new Instruction(Instruction.TRAMLABELCALLER, Integer.toString(label1), einsetzInstruktion, ersatzStelle));
+		
+		addLabel(nl, rho);
+		String label2 = Integer.toString(labelCount);
+		
+		tramCode.add(new Instruction(Instruction.TRAMLABEL, label2));
+		tramCode.addAll(code(letNode.getChildren().get(0),nl+1, rho2));	//Übersetzung DefNode
+		tramCode.addAll(code(letNode.getChildren().get(1),nl+1, rho2));	//Übersetzung BodyNode
+		tramCode.add(new Instruction(Instruction.RETURN));
+		
+		tramCode.add(new Instruction(Instruction.TRAMLABEL, Integer.toString(label1)));
+		Instruction einsetzInstruction2 = new Instruction(Instruction.INVOKE, nav, -1);	//nav entspricht der Anzahl der lokalen Variablen
+		ersatzStelle = 2;
+		tramCode.add(new Instruction(Instruction.TRAMLABELCALLER, label2, einsetzInstruction2, ersatzStelle));
+
 		return tramCode;
 		
 	}
