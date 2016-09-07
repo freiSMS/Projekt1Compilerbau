@@ -17,11 +17,13 @@ public class LazyNode extends Node
     @Override
     public Elab elab_def(Elab elab, int nl)	{
 
+    	//Hilfsvariablen
     	int nav = elab.nav;
     	HashMap<String, AddressPair> rho = elab.rho;
+    	IDNode idNode = (IDNode) this.getChildren().get(0);
     	
-    	//IDNode d1 = (IDNode) this.getChildren().get(0);
-    	//rho.put(d1.getAttribute().toString(), new AddressPair(new TramLabel(-1),nl ));	//Für jedes dieser Kinder muss eine PseudoInstruktion eingefügt werden
+    	rho.put(idNode.getAttribute().toString(), new AddressPair(nav, nl));
+    	elab.nav = nav +1;
     	
     	return elab;
     }
