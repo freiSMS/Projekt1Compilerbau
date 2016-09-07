@@ -19,13 +19,14 @@ public class FuncNode extends Node
     @Override
     public Elab elab_def(Elab elab, int nl)	{
     	//....
-    	//CompilerFabrik.addLabel(nl, rho);		//ist das richtig? hier ist keine zahl der key
-    	//int label = CompilerFabrik.labelCount;
+    	CompilerFabrik.addLabel(nl, rho);		//ist das richtig? hier ist keine zahl der key
+    	int label = CompilerFabrik.labelCount;
+    	
     	int nav = elab.nav;
     	HashMap<String, AddressPair> rho = elab.rho;
     	
     	IDNode d1 = (IDNode) this.getChildren().get(0);
-    	rho.put(d1.getAttribute().toString(), new AddressPair(new TramLabel(-1),nl ));	//Für jedes dieser Kinder muss eine PseudoInstruktion eingefügt werden
+    	rho.put(d1.getAttribute().toString(), new AddressPair(label, nl ));	//Für jedes dieser Kinder muss eine PseudoInstruktion eingefügt werden
     	
     	return elab;
     }

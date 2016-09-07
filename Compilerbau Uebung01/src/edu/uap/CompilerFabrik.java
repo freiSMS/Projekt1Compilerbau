@@ -360,14 +360,22 @@ public class CompilerFabrik {
 	public static Vector<Instruction> code(FuncNode funcNode, int nl1, HashMap<String, AddressPair> rho)	{
 		Vector<Instruction> tramCode = new Vector<Instruction>();
 		
+		addLabel(nl1, rho);
+		String label1 = Integer.toString(labelCount);
+		Instruction einsetzInstruction = new Instruction (Instruction.GOTO, -1);
+		tramCode.add(new Instruction(Instruction.TRAMLABELCALLER, label1, einsetzInstruction, 1));
+		
+		
+		//Function Body Übersetzung
 		IDNode signature = (IDNode) funcNode.getChildren().get(0);
 		
 		String funcKey = signature.getAttribute().toString();// der IDNode (Kind 0) enthält die Signatur der Funktion
 		
 		//Speichere die FunktionsID in der Hashmap mit dem Label und dem Nesting Level:
 		int nl = rho.get(funcKey).nl;
+		String label2 = rho.get(funcKey).loc.toString();
 
-		tramCode.add(new Instruction(Instruction.TRAMLABEL, funcKey));
+		tramCode.add(new Instruction(Instruction.TRAMLABEL, label2));
 		
 		//Hinzufügen der Parameter in den Speicher:
 		ParamsNode par = (ParamsNode) funcNode.getChildren().get(1);
@@ -379,8 +387,9 @@ public class CompilerFabrik {
 		tramCode.addAll(code(funcNode.getChildren().get(2).getChildren().get(0), nl+1, rho)); //Expressioncode in body
 		
 		
-		
-		
+		tramCode.add(new Instruction(Instruction.TRAMLABEL, label1));
+		tramCode.add(new Instruction(Instruction.NOP));
+
 		return tramCode;
 		
 	}
