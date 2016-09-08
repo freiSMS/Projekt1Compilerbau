@@ -109,6 +109,12 @@ public class CompilerFabrik {
 		case "THEN":
 			tramCode.addAll(code((ThenNode) node, nl, rho));
 			break;		
+		case "LAZY":
+			tramCode.addAll(code((LazyNode) node, nl, rho));
+			break;	
+		case "VAR":
+			tramCode.addAll(code((VarNode) node, nl, rho));
+			break;		
 		}
 		return tramCode;
 	}
@@ -323,9 +329,13 @@ public class CompilerFabrik {
 		Vector<Instruction> tramCode = new Vector<Instruction>();
 		
 		// nl wird in Aufgabe 2 zu nl +1
-		int labelCountVorher = labelCount;
+		//int labelCountVorher = labelCount;
 		Elab elab = ((DefNode)letNode.getChildren().get(0)).elab_def(rho, nl+1, 0);	//Für jeden Def Node ist die 0 die erste freie Stelle, da sie einen eigenen Speicher hat??!?
-		int labelCountDanach = labelCount - labelCountVorher;
+		//int labelCountDanach = labelCount - labelCountVorher;
+		
+		//int erzeugteParametervariablen = labelCountDanach - ((DefNode)letNode.getChildren().get(0)).getChildren().size();
+		//System.out.println("Habe folgende Anzahl an Parametern erzeugt: " + erzeugteParametervariablen);
+		
 		HashMap<String, AddressPair> rho2 = elab.rho;
 		int nav = elab.nav;	//gibt die Anzahl der zu erzeugenden const_befehle an (da nav ab null hochzaehlt)
 		for (int i= nav; i>0; i--){
@@ -354,6 +364,7 @@ public class CompilerFabrik {
 		Instruction einsetzInstruction2 = new Instruction(Instruction.INVOKE, nav, -1, 0);	//nav entspricht der Anzahl der lokalen Variablen
 		ersatzStelle = 2;
 		tramCode.add(new Instruction(Instruction.TRAMLABELCALLER, label2, einsetzInstruction2, ersatzStelle));
+
 
 		return tramCode;
 		
@@ -388,7 +399,7 @@ public class CompilerFabrik {
 			rho.put(key, new AddressPair(i, nl+1));
 		}
 		tramCode.addAll(code(funcNode.getChildren().get(2).getChildren().get(0), nl+1, rho)); //Expressioncode in body
-		
+		tramCode.add(new Instruction(Instruction.RETURN));
 		
 		tramCode.add(new Instruction(Instruction.TRAMLABEL, label1));
 		tramCode.add(new Instruction(Instruction.NOP));
@@ -492,6 +503,7 @@ public class CompilerFabrik {
 			}
 		
 		}
+		altProgramm.add(new Instruction(Instruction.HALT));
 		return altProgramm;
 		
 	}

@@ -144,7 +144,12 @@ public class abstractMachine {
 				case Instruction.RETURN:
 					RETURN();
 					break;
-					
+				case Instruction.LAZY:
+					LAZY(aktuelleInstruktion.getArg1(), aktuelleInstruktion.getArg2());
+					break;
+				case Instruction.LAZYRETURN:
+					LAZYRETURN();
+					break;
 				default:
 					System.out.println("Die Instruktion an Position " + PC
 							+ " wurde nicht als gültiger Maschinenbefehl erkannt.");
@@ -204,7 +209,7 @@ public class abstractMachine {
 		PC++;
 	}
 	
-	private void lazy( int k, int p)	{
+	private void LAZY( int k, int p)	{
 		stack.set(PP +k, new LazzyObject(top+1, abstractMachine.closure));
 		stack.set(top+1, new LazzyObject(p,abstractMachine.pointer));
 		stack.set(top+2, new LazzyObject(FP,abstractMachine.integer));  // Merke Werte der Register zum Zeitpunkt der Deklaration 

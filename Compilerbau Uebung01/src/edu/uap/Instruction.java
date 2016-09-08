@@ -45,7 +45,7 @@ public class Instruction
 	// anstatt der dort stehenden Sprungadresse -1 eingefügt. Dann wird der TramLabelCaller entfernt.
 	
 	public final static int LAZYRETURN = 20;
-	public final static int LAZY = 19;
+	public final static int LAZY = 21;
 	
 	
 
@@ -231,6 +231,12 @@ public class Instruction
 				break;
 			case Instruction.TRAMLABELCALLER:
 				retStr += "TRAMLABELCALLER";
+				break;
+			case Instruction.LAZY:
+				retStr += "LAZY";
+				break;
+			case Instruction.LAZYRETURN:
+				retStr += "LAZYRETURN";
 				break;
 			default:
 				retStr += "ERROR";
