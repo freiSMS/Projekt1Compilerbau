@@ -1,4 +1,4 @@
-let lazy end=mult(2,2)
+let lazy end=mult(1,2)
 	mult(x,y) { x*y }
 	count(start) { end+6 }
 in count(0)

@@ -292,7 +292,7 @@ public class CompilerFabrik {
 		
 		//Hilfsvariablen
 		String idName = call.getChildren().get(0).getAttribute().toString();
-		int anzahlFunktionsparameter = call.getChildren().size() -1; //Da das erste Kind der IDNode ist
+		int anzahlFunktionsparameter = call.getChildren().getLast().getChildren().size(); //Da das erste Kind der IDNode ist
 		AddressPair idSpeicherInhalt = rho.get(idName);
 		String label = idSpeicherInhalt.loc.toString();
 		int nestingLevelDifferenz = nl - idSpeicherInhalt.nl;

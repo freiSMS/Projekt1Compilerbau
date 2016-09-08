@@ -17,7 +17,7 @@ public class abstractMachine {
 	private boolean initialized = false;	//wird true, wenn ein gültiges Programm geladen wurde
 	private boolean debug = false; //bestimmt ob sich das Programm im debug Modus befindet
 	//private int[] stack;
-	private List<LazzyObject> stack = new ArrayList<LazzyObject>();
+	private List<LazyObject> stack = new ArrayList<LazyObject>();
 	
 	
 	public final static String pointer = "P";
@@ -43,7 +43,7 @@ public class abstractMachine {
 		top = TOP;
 		//Initialisiere die Speicher für die Variablen:
 		for (int i = 0; i< top +1; i++)	{
-			stack.add(new LazzyObject(0, abstractMachine.integer));
+			stack.add(new LazyObject(0, abstractMachine.integer));
 		}
 	}
 
@@ -159,7 +159,7 @@ public class abstractMachine {
 
 				// Stack auslesen
 				StringBuilder deb = new StringBuilder();
-				for (LazzyObject s: stack)	{
+				for (LazyObject s: stack)	{
 					deb.append(s.val + ", ");
 				}
 				
@@ -197,7 +197,7 @@ public class abstractMachine {
 
 	// Definition der Maschinenbefehle
 	private void CONST(int k, String i) {
-		stack.add(new LazzyObject(k, i));
+		stack.add(new LazyObject(k, i));
 		top++;
 		PC++;
 	}
@@ -210,11 +210,12 @@ public class abstractMachine {
 	}
 	
 	private void LAZY( int k, int p)	{
-		stack.set(PP +k, new LazzyObject(top+1, abstractMachine.closure));
-		stack.set(top+1, new LazzyObject(p,abstractMachine.pointer));
-		stack.set(top+2, new LazzyObject(FP,abstractMachine.integer));  // Merke Werte der Register zum Zeitpunkt der Deklaration 
-        stack.set(top+3, new LazzyObject(PP,abstractMachine.integer));
-        stack.set(top, stack.get(top+3)); 
+		stack.set(PP +k, new LazyObject(top+1, abstractMachine.closure));
+		stack.add(top+1, new LazyObject(p,abstractMachine.pointer));
+		stack.add(top+2, new LazyObject(FP,abstractMachine.integer));  // Merke Werte der Register zum Zeitpunkt der Deklaration 
+        stack.add(top+3, new LazyObject(PP,abstractMachine.integer));
+        //stack.set(top, stack.get(top+3)); 
+        top += 3;
         PC = PC + 1; 
 	}
 
@@ -225,11 +226,12 @@ public class abstractMachine {
 			top++;
 			PC++;
 		}
-		else if (stack.get(spp + k).equals(abstractMachine.closure))	{
-			stack.set(top+1, new LazzyObject(PC+1, abstractMachine.pointer));
-			stack.set(top+2, new LazzyObject(spp+ k, abstractMachine.integer));
-			stack.set(top+3, new LazzyObject(FP, abstractMachine.integer));
-			stack.set(top+4, new LazzyObject(PP, abstractMachine.integer));
+		else if (stack.get(spp + k).tag.equals(abstractMachine.closure))	{
+			//System.out.println("Closure gefunden. Mache cooles Zeug.");
+			stack.add(top+1, new LazyObject(PC+1, abstractMachine.pointer));
+			stack.add(top+2, new LazyObject(spp+ k, abstractMachine.integer));
+			stack.add(top+3, new LazyObject(FP, abstractMachine.integer));
+			stack.add(top+4, new LazyObject(PP, abstractMachine.integer));
 			top = top +4;
 			PC = stack.get(stack.get(spp +k).val).val;
 			FP = stack.get((stack.get(spp +k).val)+1).val;
@@ -243,8 +245,17 @@ public class abstractMachine {
 		stack.set(stack.get(top -3).val, stack.get(top));
 		FP = stack.get(top -2).val;
 		PP = stack.get(top -1).val;
-		stack.set(stack.get(top-4).val, stack.get(top));	//****Nochmal prüfen (siehe Folie)
+		stack.set(top-4,new LazyObject(stack.get(top).val, abstractMachine.integer));	//****Nochmal prüfen (siehe Folie)
+		//System.out.println("LAZY TOP -> " + top);
+		//System.out.println("LAZY Size -> " + stack.size());
 		top = top -4;
+		//System.out.println("LAZY TOP -> " + top);
+		//System.out.println("LAZY Size -> " + stack.size());
+		for (int i = top+1; i < stack.size(); i++) {
+			stack.remove(i);
+		}
+		//System.out.println("LAZY TOP -> " + top);
+		//System.out.println("LAZY Size -> " + stack.size());
 	}
 
 	private int SPP(int d, int pp, int fp) {
@@ -265,10 +276,10 @@ public class abstractMachine {
 
 	private void ADD() {
 		if(stack.get(top-1).tag != abstractMachine.integer || stack.get(top).tag != abstractMachine.integer)	{
-			System.out.println("fehler");
+			System.out.println("fehlerAdd");
 			System.exit(-1);
 		}
-		stack.set(top - 1, new LazzyObject(stack.get(top - 1).val + stack.get(top).val, abstractMachine.integer));
+		stack.set(top - 1, new LazyObject(stack.get(top - 1).val + stack.get(top).val, abstractMachine.integer));
 		top--;
 		PC++;
 	}
@@ -279,7 +290,7 @@ public class abstractMachine {
 			System.out.println("fehler");
 			System.exit(-1);
 		}
-		stack.set(top - 1, new LazzyObject(stack.get(top - 1).val - stack.get(top).val, abstractMachine.integer));
+		stack.set(top - 1, new LazyObject(stack.get(top - 1).val - stack.get(top).val, abstractMachine.integer));
 		stack.remove(top);
 		top--;
 		PC++;
@@ -287,10 +298,10 @@ public class abstractMachine {
 
 	private void MUL() {
 		if(stack.get(top-1).tag != abstractMachine.integer || stack.get(top).tag != abstractMachine.integer)	{
-			System.out.println("fehler");
+			System.out.println("fehlerMul");
 			System.exit(-1);
 		}
-		stack.set(top - 1, new LazzyObject(stack.get(top - 1).val * stack.get(top).val, abstractMachine.integer));
+		stack.set(top - 1, new LazyObject(stack.get(top - 1).val * stack.get(top).val, abstractMachine.integer));
 		stack.remove(top);
 		top--;
 		PC++;
@@ -301,7 +312,7 @@ public class abstractMachine {
 			System.out.println("fehler");
 			System.exit(-1);
 		}
-		stack.set(top - 1, new LazzyObject(stack.get(top - 1).val / stack.get(top).val, abstractMachine.integer));
+		stack.set(top - 1, new LazyObject(stack.get(top - 1).val / stack.get(top).val, abstractMachine.integer));
 		stack.remove(top);
 		top--;
 		PC++;
@@ -314,9 +325,9 @@ public class abstractMachine {
 			System.exit(-1);
 		}
 		if (stack.get(top -1).val < stack.get(top).val) {
-			stack.set(top - 1, new LazzyObject(1, abstractMachine.integer));
+			stack.set(top - 1, new LazyObject(1, abstractMachine.integer));
 		} else {
-			stack.set(top - 1, new LazzyObject(0, abstractMachine.integer));
+			stack.set(top - 1, new LazyObject(0, abstractMachine.integer));
 		}
 		stack.remove(top);
 		top--;
@@ -329,9 +340,9 @@ public class abstractMachine {
 			System.exit(-1);
 		}
 		if (stack.get(top - 1).val > stack.get(top).val) {
-			stack.set(top - 1, new LazzyObject(0, abstractMachine.integer));
+			stack.set(top - 1, new LazyObject(0, abstractMachine.integer));
 		} else {
-			stack.set(top - 1, new LazzyObject(1, abstractMachine.integer));
+			stack.set(top - 1, new LazyObject(1, abstractMachine.integer));
 		}
 		stack.remove(top);
 		top--;
@@ -344,9 +355,9 @@ public class abstractMachine {
 			System.exit(-1);
 		}
 		if (stack.get(top - 1).val == stack.get(top).val) {
-			stack.set(top - 1, new LazzyObject(1, abstractMachine.integer));
+			stack.set(top - 1, new LazyObject(1, abstractMachine.integer));
 		} else {
-			stack.set(top - 1, new LazzyObject(0, abstractMachine.integer));
+			stack.set(top - 1, new LazyObject(0, abstractMachine.integer));
 		}
 		stack.remove(top);
 		top--;
@@ -359,9 +370,9 @@ public class abstractMachine {
 			System.exit(-1);
 		}
 		if (stack.get(top - 1).val != stack.get(top).val) {
-			stack.set(top - 1, new LazzyObject(1, abstractMachine.integer));
+			stack.set(top - 1, new LazyObject(1, abstractMachine.integer));
 		} else {
-			stack.set(top - 1, new LazzyObject( 0, abstractMachine.integer));
+			stack.set(top - 1, new LazyObject( 0, abstractMachine.integer));
 		}
 		stack.remove(top);
 		top--;
@@ -391,11 +402,11 @@ public class abstractMachine {
 	}
 
 	private void INVOKE(int n, int p, int d) {
-		stack.add( new LazzyObject(PP, abstractMachine.integer));	//top + 1
-		stack.add( new LazzyObject(FP, abstractMachine.integer)); //top + 2
-		stack.add(new LazzyObject(SPP(d, PP, FP), abstractMachine.integer)); //top + 3
-		stack.add(new LazzyObject(SFP(d, PP, FP), abstractMachine.integer)); // top + 4
-		stack.add(new LazzyObject(PC + 1, abstractMachine.pointer)); //top + 5
+		stack.add( new LazyObject(PP, abstractMachine.integer));	//top + 1
+		stack.add( new LazyObject(FP, abstractMachine.integer)); //top + 2
+		stack.add(new LazyObject(SPP(d, PP, FP), abstractMachine.integer)); //top + 3
+		stack.add(new LazyObject(SFP(d, PP, FP), abstractMachine.integer)); // top + 4
+		stack.add(new LazyObject(PC + 1, abstractMachine.pointer)); //top + 5
 		PP = top - n + 1;
 		FP = top + 1;
 		top = top + 5;
@@ -403,17 +414,21 @@ public class abstractMachine {
 	}
 
 	private void RETURN() {
-		LazzyObject res = stack.get(top);
+		LazyObject res = stack.get(top);
 		top = PP;
 		PP = stack.get(FP).val;
 		PC = stack.get(FP + 4).val;
 		FP = stack.get(FP + 1).val;
 		stack.set(top, res);
 		
+		System.out.println("TOP -> " + top);
+		System.out.println("Size -> " + stack.size());
 		//Entferne alle Stack Einträge > top
 		for(int i = stack.size()-1; i>top ;i--)	{
 			stack.remove(i);
 		}
+		System.out.println("TOP -> " + top);
+		System.out.println("Size -> " + stack.size());
 	}
 
 }
