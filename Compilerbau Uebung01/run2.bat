@@ -1,11 +1,12 @@
-java -jar lib/jflex-1.6.1.jar src\edu\uap\tripla.flex;
+cd D:\GitHub\Projekt1Compilerbau\Compilerbau Uebung01
+java -jar lib/jflex-1.6.1.jar src\edu\uap\tripla.flex
 java -jar lib/java-cup-11a.jar src\edu\uap\tripla.cup
 
 zusammen:
 java -jar lib/jflex-1.6.1.jar src\edu\uap\tripla.flex; java -jar lib/java-cup-11a.jar src\edu\uap\tripla.cup;
 
-copy parser.java src\edu\uap;
-copy sym.java src\edu\uap;
+copy parser.java src\edu\uap
+copy sym.java src\edu\uap
 
 rem "C:\Program Files\Java\jdk1.8.0_91\bin\javac" -classpath .;src\;lib\java-cup-11a.jar src\edu\uap\*.java
 

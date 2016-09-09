@@ -315,23 +315,7 @@ D ::= DPart:d
           RESULT = defNode;
       :}
       
-  	   | VAR ID:id ASSIGN E:e 
-        {:
-			VarNode varNode = new VarNode();
-			varNode.addChild(new IDNode(id));
-			varNode.addChild(e);
-			RESULT = varNode;
-		:}
-			
-
-
- 		| LAZY ID:id  ASSIGN E:e 
- 		 {:
-			LazyNode lazyNode = new LazyNode();
-			lazyNode.addChild(new IDNode (id));
-			lazyNode.addChild(e);
-			RESULT = lazyNode;
-		:}
+  	  
       
     ;
 
@@ -351,6 +335,23 @@ DPart ::= ID:id LPAR V:v RPAR LBRA E:e RBRA
           RESULT = funcNode;
           
        :}
+        | VAR ID:id ASSIGN E:e 
+        {:
+			VarNode varNode = new VarNode();
+			varNode.addChild(new IDNode(id));
+			varNode.addChild(e);
+			RESULT = varNode;
+		:}
+			
+
+
+ 		| LAZY ID:id  ASSIGN E:e 
+ 		 {:
+			LazyNode lazyNode = new LazyNode();
+			lazyNode.addChild(new IDNode (id));
+			lazyNode.addChild(e);
+			RESULT = lazyNode;
+		:}
  		 
      ;
 

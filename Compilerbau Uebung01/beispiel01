@@ -1,4 +1,7 @@
-let lazy end=mult(1,2)
-	mult(x,y) { x*y }
-	count(start) { end+6 }
-in count(0)
+let
+  var x = 1
+  mult(y) { x * y }
+  lazy end = mult(2) 
+  func(a, b) { 
+  	let test(g) {if (end < 10) then x = a + b + end else x = 99} in test(0) }
+in func(5, 5)
