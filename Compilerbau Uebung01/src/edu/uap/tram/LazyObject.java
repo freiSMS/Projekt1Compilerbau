@@ -8,4 +8,9 @@ public class LazyObject {
 		this.val = val;
 		this.tag = tag;
 	}
+	
+	@Override
+	public String toString()	{
+		return ("[ " + val+ ", "+ tag +" ]");
+	}
 }

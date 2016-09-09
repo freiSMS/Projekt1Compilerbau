@@ -1,0 +1,132 @@
+let
+    times(a, b) {a * b}
+    lazy foo = 3 - 1
+in
+    let
+        var x = 21
+    in times(x, foo)
+	
+	
+Doppelter Knoten vom Typ DEF gefunden.
+Doppelter Knoten vom Typ PARAMS gefunden.
+Doppelter Knoten vom Typ ARGS gefunden.
+geklopft
+"ast.xml" file created
+CONST 0
+TRAMLABELCALLER key = 2  ersatzStelle = 1  GOTO -1
+TRAMLABEL key = 3
+TRAMLABELCALLER key = 4  ersatzStelle = 1  GOTO -1
+TRAMLABEL key = 1
+LOAD 0 0
+LOAD 1 0
+MUL
+RETURN
+TRAMLABEL key = 4
+NOP
+TRAMLABELCALLER key = 5  ersatzStelle = 1  GOTO -1
+TRAMLABEL key = 6
+CONST 3
+CONST 1
+SUB
+LAZYRETURN
+TRAMLABEL key = 5
+TRAMLABELCALLER key = 6  ersatzStelle = 2  LAZY 0 -1
+CONST 0
+TRAMLABELCALLER key = 7  ersatzStelle = 1  GOTO -1
+TRAMLABEL key = 8
+CONST 21
+STORE 0 0
+LOAD 0 0
+LOAD 0 1
+TRAMLABELCALLER key = 1  ersatzStelle = 2  INVOKE 2 -1 1
+RETURN
+TRAMLABEL key = 7
+TRAMLABELCALLER key = 8  ersatzStelle = 2  INVOKE 1 -1 0
+RETURN
+TRAMLABEL key = 2
+TRAMLABELCALLER key = 3  ersatzStelle = 2  INVOKE 1 -1 0
+
+ Beginne mit dem ersetzen der TramLabel. 
+
+CONST 0
+GOTO 24
+GOTO 7
+LOAD 0 0
+LOAD 1 0
+MUL
+RETURN
+NOP
+GOTO 13
+CONST 3
+CONST 1
+SUB
+LAZYRETURN
+LAZY 0 9
+CONST 0
+GOTO 22
+CONST 21
+STORE 0 0
+LOAD 0 0
+LOAD 0 1
+INVOKE 2 3 1
+RETURN
+INVOKE 1 16 0
+RETURN
+INVOKE 1 2 0
+HALT
+Der Debug Modus ist nun eingeschaltet. Rufen sie die Methode ein zweites mal auf, um ihn wieder auszuschalten.
+Abstrakte Maschine erzeugt.
+Stack: 0, 
+ oberstes Stackelement: 0, Top = 0, PC = 1, PP: 0, FP: 0
+Stack: 0, 
+ oberstes Stackelement: 0, Top = 0, PC = 24, PP: 0, FP: 0
+Stack: 0, 0, 0, 0, 0, 25, 
+ oberstes Stackelement: 25, Top = 5, PC = 2, PP: 0, FP: 1
+Stack: 0, 0, 0, 0, 0, 25, 
+ oberstes Stackelement: 25, Top = 5, PC = 7, PP: 0, FP: 1
+Stack: 0, 0, 0, 0, 0, 25, 
+ oberstes Stackelement: 25, Top = 5, PC = 8, PP: 0, FP: 1
+Stack: 0, 0, 0, 0, 0, 25, 
+ oberstes Stackelement: 25, Top = 5, PC = 13, PP: 0, FP: 1
+Stack: 6, 0, 0, 0, 0, 25, 9, 1, 0, 
+ oberstes Stackelement: 0, Top = 8, PC = 14, PP: 0, FP: 1
+Stack: 6, 0, 0, 0, 0, 25, 9, 1, 0, 0, 
+ oberstes Stackelement: 0, Top = 9, PC = 15, PP: 0, FP: 1
+Stack: 6, 0, 0, 0, 0, 25, 9, 1, 0, 0, 
+ oberstes Stackelement: 0, Top = 9, PC = 22, PP: 0, FP: 1
+Stack: 6, 0, 0, 0, 0, 25, 9, 1, 0, 0, 0, 1, 0, 1, 23, 
+ oberstes Stackelement: 23, Top = 14, PC = 16, PP: 9, FP: 10
+Stack: 6, 0, 0, 0, 0, 25, 9, 1, 0, 0, 0, 1, 0, 1, 23, 21, 
+ oberstes Stackelement: 21, Top = 15, PC = 17, PP: 9, FP: 10
+Stack: 6, 0, 0, 0, 0, 25, 9, 1, 0, 21, 0, 1, 0, 1, 23, 
+ oberstes Stackelement: 23, Top = 14, PC = 18, PP: 9, FP: 10
+Stack: 6, 0, 0, 0, 0, 25, 9, 1, 0, 21, 0, 1, 0, 1, 23, 21, 
+ oberstes Stackelement: 21, Top = 15, PC = 19, PP: 9, FP: 10
+Stack: 6, 0, 0, 0, 0, 25, 9, 1, 0, 21, 0, 1, 0, 1, 23, 21, 20, 0, 10, 9, 
+ oberstes Stackelement: 9, Top = 19, PC = 9, PP: 0, FP: 1
+Stack: 6, 0, 0, 0, 0, 25, 9, 1, 0, 21, 0, 1, 0, 1, 23, 21, 20, 0, 10, 9, 3, 
+ oberstes Stackelement: 3, Top = 20, PC = 10, PP: 0, FP: 1
+Stack: 6, 0, 0, 0, 0, 25, 9, 1, 0, 21, 0, 1, 0, 1, 23, 21, 20, 0, 10, 9, 3, 1, 
+ oberstes Stackelement: 1, Top = 21, PC = 11, PP: 0, FP: 1
+Stack: 6, 0, 0, 0, 0, 25, 9, 1, 0, 21, 0, 1, 0, 1, 23, 21, 20, 0, 10, 9, 2, 
+ oberstes Stackelement: 2, Top = 20, PC = 12, PP: 0, FP: 1
+Stack: 2, 0, 0, 0, 0, 25, 9, 1, 0, 21, 0, 1, 0, 1, 23, 21, 2, 10, 2, 
+ oberstes Stackelement: 2, Top = 16, PC = 20, PP: 9, FP: 10
+Stack: 2, 0, 0, 0, 0, 25, 9, 1, 0, 21, 0, 1, 0, 1, 23, 21, 2, 9, 10, 0, 1, 21, 
+ oberstes Stackelement: 21, Top = 21, PC = 3, PP: 15, FP: 17
+Stack: 2, 0, 0, 0, 0, 25, 9, 1, 0, 21, 0, 1, 0, 1, 23, 21, 2, 9, 10, 0, 1, 21, 21, 
+ oberstes Stackelement: 21, Top = 22, PC = 4, PP: 15, FP: 17
+Stack: 2, 0, 0, 0, 0, 25, 9, 1, 0, 21, 0, 1, 0, 1, 23, 21, 2, 9, 10, 0, 1, 21, 21, 2, 
+ oberstes Stackelement: 2, Top = 23, PC = 5, PP: 15, FP: 17
+Stack: 2, 0, 0, 0, 0, 25, 9, 1, 0, 21, 0, 1, 0, 1, 23, 21, 2, 9, 10, 0, 1, 21, 42, 
+ oberstes Stackelement: 42, Top = 22, PC = 6, PP: 15, FP: 17
+Stack: 2, 0, 0, 0, 0, 25, 9, 1, 0, 21, 0, 1, 0, 1, 23, 42, 
+ oberstes Stackelement: 42, Top = 15, PC = 21, PP: 9, FP: 10
+Stack: 2, 0, 0, 0, 0, 25, 9, 1, 0, 42, 
+ oberstes Stackelement: 42, Top = 9, PC = 23, PP: 0, FP: 1
+Stack: 42, 
+ oberstes Stackelement: 42, Top = 0, PC = 25, PP: 0, FP: 0
+Stack: 42, 
+ oberstes Stackelement: 42, Top = 0, PC = -1, PP: 0, FP: 0
+Die Ausführung des Programmes war erfolgreich. Währendessen gab es 0 nicht erkannte Operationen
+	

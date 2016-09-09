@@ -168,8 +168,7 @@ public class abstractMachine {
 					deb.append(stack.get(top).val);
 				}
 				
-				System.out.println("Stack: " + deb.toString() + ", Top = " + top
-								+ ", PC = " + PC + ", PP: " + PP + ", FP: " + FP);
+				System.out.println("Stack: " + deb.toString() + ", Top = " + top + ", PC = " + PC + ", PP: " + PP + ", FP: " + FP);
 				
 				
 				// Ausgabe der Variablen pro Schritt, falls der Debuger eingeschaltet ist. 

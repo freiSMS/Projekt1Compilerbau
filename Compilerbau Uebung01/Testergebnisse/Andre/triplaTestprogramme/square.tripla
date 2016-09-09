@@ -1,0 +1,62 @@
+let square(x) { x*x } 
+in square(10)
+
+geklopft
+"ast.xml" file created
+TRAMLABELCALLER key = 2  ersatzStelle = 1  GOTO -1
+TRAMLABEL key = 3
+TRAMLABELCALLER key = 4  ersatzStelle = 1  GOTO -1
+TRAMLABEL key = 1
+LOAD 0 0
+LOAD 0 0
+MUL
+RETURN
+TRAMLABEL key = 4
+NOP
+CONST 10
+TRAMLABELCALLER key = 1  ersatzStelle = 2  INVOKE 1 -1 0
+RETURN
+TRAMLABEL key = 2
+TRAMLABELCALLER key = 3  ersatzStelle = 2  INVOKE 0 -1 0
+
+ Beginne mit dem ersetzen der TramLabel. 
+
+GOTO 10
+GOTO 6
+LOAD 0 0
+LOAD 0 0
+MUL
+RETURN
+NOP
+CONST 10
+INVOKE 1 2 0
+RETURN
+INVOKE 0 1 0
+HALT
+Der Debug Modus ist nun eingeschaltet. Rufen sie die Methode ein zweites mal auf, um ihn wieder auszuschalten.
+Abstrakte Maschine erzeugt.
+Stack: 
+ oberstes Stackelement: , Top = -1, PC = 10, PP: 0, FP: 0
+Stack: 0, 0, 0, 0, 11, 
+ oberstes Stackelement: 11, Top = 4, PC = 1, PP: 0, FP: 0
+Stack: 0, 0, 0, 0, 11, 
+ oberstes Stackelement: 11, Top = 4, PC = 6, PP: 0, FP: 0
+Stack: 0, 0, 0, 0, 11, 
+ oberstes Stackelement: 11, Top = 4, PC = 7, PP: 0, FP: 0
+Stack: 0, 0, 0, 0, 11, 10, 
+ oberstes Stackelement: 10, Top = 5, PC = 8, PP: 0, FP: 0
+Stack: 0, 0, 0, 0, 11, 10, 0, 0, 0, 0, 9, 
+ oberstes Stackelement: 9, Top = 10, PC = 2, PP: 5, FP: 6
+Stack: 0, 0, 0, 0, 11, 10, 0, 0, 0, 0, 9, 10, 
+ oberstes Stackelement: 10, Top = 11, PC = 3, PP: 5, FP: 6
+Stack: 0, 0, 0, 0, 11, 10, 0, 0, 0, 0, 9, 10, 10, 
+ oberstes Stackelement: 10, Top = 12, PC = 4, PP: 5, FP: 6
+Stack: 0, 0, 0, 0, 11, 10, 0, 0, 0, 0, 9, 100, 
+ oberstes Stackelement: 100, Top = 11, PC = 5, PP: 5, FP: 6
+Stack: 0, 0, 0, 0, 11, 100, 
+ oberstes Stackelement: 100, Top = 5, PC = 9, PP: 0, FP: 0
+Stack: 100, 
+ oberstes Stackelement: 100, Top = 0, PC = 11, PP: 0, FP: 0
+Stack: 100, 
+ oberstes Stackelement: 100, Top = 0, PC = -1, PP: 0, FP: 0
+Die Ausführung des Programmes war erfolgreich. Währendessen gab es 0 nicht erkannte Operationen
