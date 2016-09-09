@@ -226,7 +226,6 @@ public class abstractMachine {
 		stack.push(top+1, new LazyObject(p,abstractMachine.pointer));
 		stack.push(top+2, new LazyObject(FP,abstractMachine.integer));  // Merke Werte der Register zum Zeitpunkt der Deklaration 
         stack.push(top+3, new LazyObject(PP,abstractMachine.integer));
-        //stack.push(top, stack.get(top+3)); 
         top += 3;
         PC = PC + 1; 
 	}
@@ -239,7 +238,6 @@ public class abstractMachine {
 			PC++;
 		}
 		else if (stack.get(spp + k).tag.equals(abstractMachine.closure))	{
-			//System.out.println("Closure gefunden. Mache cooles Zeug.");
 			stack.push(top+1, new LazyObject(PC+1, abstractMachine.pointer));
 			stack.push(top+2, new LazyObject(spp+ k, abstractMachine.integer));
 			stack.push(top+3, new LazyObject(FP, abstractMachine.integer));
@@ -433,14 +431,14 @@ public class abstractMachine {
 		FP = stack.get(FP + 1).val;
 		stack.push(top, res);
 		
-		System.out.println("TOP -> " + top);
-		System.out.println("Size -> " + stack.size());
+		//System.out.println("TOP -> " + top);
+		//System.out.println("Size -> " + stack.size());
 		//Entferne alle Stack Einträge > top
 		for(int i = stack.size()-1; i>top ;i--)	{
 			stack.remove(i);
 		}
-		System.out.println("TOP -> " + top);
-		System.out.println("Size -> " + stack.size());
+		//System.out.println("TOP -> " + top);
+		//System.out.println("Size -> " + stack.size());
 	}
 
 }

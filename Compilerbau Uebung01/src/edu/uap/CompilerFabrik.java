@@ -180,10 +180,10 @@ public class CompilerFabrik {
 		case "!=":
 			instruktionsNummer = Instruction.NEQ;
 			break;
-		case "&lt":
+		case "&lt;":
 			instruktionsNummer = Instruction.LT;
 			break;
-		case "&gt":
+		case "&gt;":
 			instruktionsNummer = Instruction.GT;
 			break;
 		case "+":
