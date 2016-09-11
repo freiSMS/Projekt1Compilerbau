@@ -21,4 +21,8 @@ public class TramLabel {
 			return false;
 		}
 	}
+	@Override
+	public String toString()	{
+		return "t"+address;
+	}
 }

@@ -37,4 +37,9 @@ public class AddressPair {
 			return false;
 		}
 	}
+	
+	@Override
+	public String toString()	{
+		return ("[ " + loc.toString()+ ", "+ nl +" ]");
+	}
 }
