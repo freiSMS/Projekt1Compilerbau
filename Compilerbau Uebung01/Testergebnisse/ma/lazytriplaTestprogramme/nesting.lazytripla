@@ -1,0 +1,214 @@
+let
+  var x = 1
+  mult(y) { x * y }
+  lazy end = mult(2) 
+  func(a, b) { 
+  	let test(g) {if (end < 10) then x = a + b + end else x = 99} in test(0) }
+in func(5, 5)
+
+CONST 0
+CONST 0
+TRAMLABELCALLER key = 3  replaced index = 1  GOTO -1
+TRAMLABEL key = 4
+CONST 1
+STORE 0 0
+TRAMLABELCALLER key = 5  replaced index = 1  GOTO -1
+TRAMLABEL key = 1
+LOAD 0 1
+LOAD 0 0
+MUL
+RETURN
+TRAMLABEL key = 5
+NOP
+TRAMLABELCALLER key = 6  replaced index = 1  GOTO -1
+TRAMLABEL key = 7
+CONST 2
+TRAMLABELCALLER key = 1  replaced index = 2  INVOKE 1 -1 0
+LAZYRETURN
+TRAMLABEL key = 6
+TRAMLABELCALLER key = 7  replaced index = 2  LAZY 1 -1
+TRAMLABELCALLER key = 8  replaced index = 1  GOTO -1
+TRAMLABEL key = 2
+TRAMLABELCALLER key = 10  replaced index = 1  GOTO -1
+TRAMLABEL key = 11
+TRAMLABELCALLER key = 12  replaced index = 1  GOTO -1
+TRAMLABEL key = 9
+LOAD 1 3
+CONST 10
+LT
+TRAMLABELCALLER key = 13  replaced index = 1  IFZERO -1
+LOAD 0 2
+LOAD 1 2
+ADD
+LOAD 1 3
+ADD
+STORE 0 3
+LOAD 0 3
+TRAMLABELCALLER key = 14  replaced index = 1  GOTO -1
+TRAMLABEL key = 13
+CONST 99
+STORE 0 3
+LOAD 0 3
+TRAMLABEL key = 14
+NOP
+RETURN
+TRAMLABEL key = 12
+NOP
+CONST 0
+TRAMLABELCALLER key = 9  replaced index = 2  INVOKE 1 -1 0
+RETURN
+TRAMLABEL key = 10
+TRAMLABELCALLER key = 11  replaced index = 2  INVOKE 0 -1 0
+RETURN
+TRAMLABEL key = 8
+NOP
+CONST 5
+CONST 5
+TRAMLABELCALLER key = 2  replaced index = 2  INVOKE 2 -1 0
+RETURN
+TRAMLABEL key = 3
+TRAMLABELCALLER key = 4  replaced index = 2  INVOKE 2 -1 0
+
+Replacing labels
+
+CONST 0
+CONST 0
+GOTO 47
+CONST 1
+STORE 0 0
+GOTO 10
+LOAD 0 1
+LOAD 0 0
+MUL
+RETURN
+NOP
+GOTO 15
+CONST 2
+INVOKE 1 6 0
+LAZYRETURN
+LAZY 1 12
+GOTO 42
+GOTO 40
+GOTO 36
+LOAD 1 3
+CONST 10
+LT
+IFZERO 31
+LOAD 0 2
+LOAD 1 2
+ADD
+LOAD 1 3
+ADD
+STORE 0 3
+LOAD 0 3
+GOTO 34
+CONST 99
+STORE 0 3
+LOAD 0 3
+NOP
+RETURN
+NOP
+CONST 0
+INVOKE 1 19 0
+RETURN
+INVOKE 0 18 0
+RETURN
+NOP
+CONST 5
+CONST 5
+INVOKE 2 17 0
+RETURN
+INVOKE 2 3 0
+HALT
+Stack: 0, 
+ oberstes Stackelement: , Top = 0, PC = 1, PP: 0, FP: 0
+Stack: 0, 0, 
+ oberstes Stackelement: 0, Top = 1, PC = 2, PP: 0, FP: 0
+Stack: 0, 0, 
+ oberstes Stackelement: 0, Top = 1, PC = 47, PP: 0, FP: 0
+Stack: 0, 0, 0, 0, 0, 0, 48, 
+ oberstes Stackelement: 48, Top = 6, PC = 3, PP: 0, FP: 2
+Stack: 0, 0, 0, 0, 0, 0, 48, 1, 
+ oberstes Stackelement: 1, Top = 7, PC = 4, PP: 0, FP: 2
+Stack: 1, 0, 0, 0, 0, 0, 48, 
+ oberstes Stackelement: 48, Top = 6, PC = 5, PP: 0, FP: 2
+Stack: 1, 0, 0, 0, 0, 0, 48, 
+ oberstes Stackelement: 48, Top = 6, PC = 10, PP: 0, FP: 2
+Stack: 1, 0, 0, 0, 0, 0, 48, 
+ oberstes Stackelement: 48, Top = 6, PC = 11, PP: 0, FP: 2
+Stack: 1, 0, 0, 0, 0, 0, 48, 
+ oberstes Stackelement: 48, Top = 6, PC = 15, PP: 0, FP: 2
+Stack: 1, 7, 0, 0, 0, 0, 48, 12, 2, 0, 
+ oberstes Stackelement: 0, Top = 9, PC = 16, PP: 0, FP: 2
+Stack: 1, 7, 0, 0, 0, 0, 48, 12, 2, 0, 
+ oberstes Stackelement: 0, Top = 9, PC = 42, PP: 0, FP: 2
+Stack: 1, 7, 0, 0, 0, 0, 48, 12, 2, 0, 
+ oberstes Stackelement: 0, Top = 9, PC = 43, PP: 0, FP: 2
+Stack: 1, 7, 0, 0, 0, 0, 48, 12, 2, 0, 5, 
+ oberstes Stackelement: 5, Top = 10, PC = 44, PP: 0, FP: 2
+Stack: 1, 7, 0, 0, 0, 0, 48, 12, 2, 0, 5, 5, 
+ oberstes Stackelement: 5, Top = 11, PC = 45, PP: 0, FP: 2
+Stack: 1, 7, 0, 0, 0, 0, 48, 12, 2, 0, 5, 5, 0, 2, 0, 2, 46, 
+ oberstes Stackelement: 46, Top = 16, PC = 17, PP: 10, FP: 12
+Stack: 1, 7, 0, 0, 0, 0, 48, 12, 2, 0, 5, 5, 0, 2, 0, 2, 46, 
+ oberstes Stackelement: 46, Top = 16, PC = 40, PP: 10, FP: 12
+Stack: 1, 7, 0, 0, 0, 0, 48, 12, 2, 0, 5, 5, 0, 2, 0, 2, 46, 10, 12, 10, 12, 41, 
+ oberstes Stackelement: 41, Top = 21, PC = 18, PP: 17, FP: 17
+Stack: 1, 7, 0, 0, 0, 0, 48, 12, 2, 0, 5, 5, 0, 2, 0, 2, 46, 10, 12, 10, 12, 41, 
+ oberstes Stackelement: 41, Top = 21, PC = 36, PP: 17, FP: 17
+Stack: 1, 7, 0, 0, 0, 0, 48, 12, 2, 0, 5, 5, 0, 2, 0, 2, 46, 10, 12, 10, 12, 41, 
+ oberstes Stackelement: 41, Top = 21, PC = 37, PP: 17, FP: 17
+Stack: 1, 7, 0, 0, 0, 0, 48, 12, 2, 0, 5, 5, 0, 2, 0, 2, 46, 10, 12, 10, 12, 41, 0, 
+ oberstes Stackelement: 0, Top = 22, PC = 38, PP: 17, FP: 17
+Stack: 1, 7, 0, 0, 0, 0, 48, 12, 2, 0, 5, 5, 0, 2, 0, 2, 46, 10, 12, 10, 12, 41, 0, 17, 17, 17, 17, 39, 
+ oberstes Stackelement: 39, Top = 27, PC = 19, PP: 22, FP: 23
+Stack: 1, 7, 0, 0, 0, 0, 48, 12, 2, 0, 5, 5, 0, 2, 0, 2, 46, 10, 12, 10, 12, 41, 0, 17, 17, 17, 17, 39, 20, 1, 23, 22, 
+ oberstes Stackelement: 22, Top = 31, PC = 12, PP: 0, FP: 2
+Stack: 1, 7, 0, 0, 0, 0, 48, 12, 2, 0, 5, 5, 0, 2, 0, 2, 46, 10, 12, 10, 12, 41, 0, 17, 17, 17, 17, 39, 20, 1, 23, 22, 2, 
+ oberstes Stackelement: 2, Top = 32, PC = 13, PP: 0, FP: 2
+Stack: 1, 7, 0, 0, 0, 0, 48, 12, 2, 0, 5, 5, 0, 2, 0, 2, 46, 10, 12, 10, 12, 41, 0, 17, 17, 17, 17, 39, 20, 1, 23, 22, 2, 0, 2, 0, 2, 14, 
+ oberstes Stackelement: 14, Top = 37, PC = 6, PP: 32, FP: 33
+Stack: 1, 7, 0, 0, 0, 0, 48, 12, 2, 0, 5, 5, 0, 2, 0, 2, 46, 10, 12, 10, 12, 41, 0, 17, 17, 17, 17, 39, 20, 1, 23, 22, 2, 0, 2, 0, 2, 14, 1, 
+ oberstes Stackelement: 1, Top = 38, PC = 7, PP: 32, FP: 33
+Stack: 1, 7, 0, 0, 0, 0, 48, 12, 2, 0, 5, 5, 0, 2, 0, 2, 46, 10, 12, 10, 12, 41, 0, 17, 17, 17, 17, 39, 20, 1, 23, 22, 2, 0, 2, 0, 2, 14, 1, 2, 
+ oberstes Stackelement: 2, Top = 39, PC = 8, PP: 32, FP: 33
+Stack: 1, 7, 0, 0, 0, 0, 48, 12, 2, 0, 5, 5, 0, 2, 0, 2, 46, 10, 12, 10, 12, 41, 0, 17, 17, 17, 17, 39, 20, 1, 23, 22, 2, 0, 2, 0, 2, 14, 2, 
+ oberstes Stackelement: 2, Top = 38, PC = 9, PP: 32, FP: 33
+Stack: 1, 7, 0, 0, 0, 0, 48, 12, 2, 0, 5, 5, 0, 2, 0, 2, 46, 10, 12, 10, 12, 41, 0, 17, 17, 17, 17, 39, 20, 1, 23, 22, 2, 
+ oberstes Stackelement: 2, Top = 32, PC = 14, PP: 0, FP: 2
+Stack: 1, 2, 0, 0, 0, 0, 48, 12, 2, 0, 5, 5, 0, 2, 0, 2, 46, 10, 12, 10, 12, 41, 0, 17, 17, 17, 17, 39, 2, 
+ oberstes Stackelement: 2, Top = 28, PC = 20, PP: 22, FP: 23
+Stack: 1, 2, 0, 0, 0, 0, 48, 12, 2, 0, 5, 5, 0, 2, 0, 2, 46, 10, 12, 10, 12, 41, 0, 17, 17, 17, 17, 39, 2, 10, 
+ oberstes Stackelement: 10, Top = 29, PC = 21, PP: 22, FP: 23
+Stack: 1, 2, 0, 0, 0, 0, 48, 12, 2, 0, 5, 5, 0, 2, 0, 2, 46, 10, 12, 10, 12, 41, 0, 17, 17, 17, 17, 39, 1, 
+ oberstes Stackelement: 1, Top = 28, PC = 22, PP: 22, FP: 23
+Stack: 1, 2, 0, 0, 0, 0, 48, 12, 2, 0, 5, 5, 0, 2, 0, 2, 46, 10, 12, 10, 12, 41, 0, 17, 17, 17, 17, 39, 
+ oberstes Stackelement: 39, Top = 27, PC = 23, PP: 22, FP: 23
+Stack: 1, 2, 0, 0, 0, 0, 48, 12, 2, 0, 5, 5, 0, 2, 0, 2, 46, 10, 12, 10, 12, 41, 0, 17, 17, 17, 17, 39, 5, 
+ oberstes Stackelement: 5, Top = 28, PC = 24, PP: 22, FP: 23
+Stack: 1, 2, 0, 0, 0, 0, 48, 12, 2, 0, 5, 5, 0, 2, 0, 2, 46, 10, 12, 10, 12, 41, 0, 17, 17, 17, 17, 39, 5, 5, 
+ oberstes Stackelement: 5, Top = 29, PC = 25, PP: 22, FP: 23
+Stack: 1, 2, 0, 0, 0, 0, 48, 12, 2, 0, 5, 5, 0, 2, 0, 2, 46, 10, 12, 10, 12, 41, 0, 17, 17, 17, 17, 39, 10, 
+ oberstes Stackelement: 10, Top = 28, PC = 26, PP: 22, FP: 23
+Stack: 1, 2, 0, 0, 0, 0, 48, 12, 2, 0, 5, 5, 0, 2, 0, 2, 46, 10, 12, 10, 12, 41, 0, 17, 17, 17, 17, 39, 10, 2, 
+ oberstes Stackelement: 2, Top = 29, PC = 27, PP: 22, FP: 23
+Stack: 1, 2, 0, 0, 0, 0, 48, 12, 2, 0, 5, 5, 0, 2, 0, 2, 46, 10, 12, 10, 12, 41, 0, 17, 17, 17, 17, 39, 12, 
+ oberstes Stackelement: 12, Top = 28, PC = 28, PP: 22, FP: 23
+Stack: 12, 2, 0, 0, 0, 0, 48, 12, 2, 0, 5, 5, 0, 2, 0, 2, 46, 10, 12, 10, 12, 41, 0, 17, 17, 17, 17, 39, 
+ oberstes Stackelement: 39, Top = 27, PC = 29, PP: 22, FP: 23
+Stack: 12, 2, 0, 0, 0, 0, 48, 12, 2, 0, 5, 5, 0, 2, 0, 2, 46, 10, 12, 10, 12, 41, 0, 17, 17, 17, 17, 39, 12, 
+ oberstes Stackelement: 12, Top = 28, PC = 30, PP: 22, FP: 23
+Stack: 12, 2, 0, 0, 0, 0, 48, 12, 2, 0, 5, 5, 0, 2, 0, 2, 46, 10, 12, 10, 12, 41, 0, 17, 17, 17, 17, 39, 12, 
+ oberstes Stackelement: 12, Top = 28, PC = 34, PP: 22, FP: 23
+Stack: 12, 2, 0, 0, 0, 0, 48, 12, 2, 0, 5, 5, 0, 2, 0, 2, 46, 10, 12, 10, 12, 41, 0, 17, 17, 17, 17, 39, 12, 
+ oberstes Stackelement: 12, Top = 28, PC = 35, PP: 22, FP: 23
+Stack: 12, 2, 0, 0, 0, 0, 48, 12, 2, 0, 5, 5, 0, 2, 0, 2, 46, 10, 12, 10, 12, 41, 12, 
+ oberstes Stackelement: 12, Top = 22, PC = 39, PP: 17, FP: 17
+Stack: 12, 2, 0, 0, 0, 0, 48, 12, 2, 0, 5, 5, 0, 2, 0, 2, 46, 12, 
+ oberstes Stackelement: 12, Top = 17, PC = 41, PP: 10, FP: 12
+Stack: 12, 2, 0, 0, 0, 0, 48, 12, 2, 0, 12, 
+ oberstes Stackelement: 12, Top = 10, PC = 46, PP: 0, FP: 2
+Stack: 12, 
+ oberstes Stackelement: , Top = 0, PC = 48, PP: 0, FP: 0
+Stack: 12, 
+ oberstes Stackelement: , Top = 0, PC = -1, PP: 0, FP: 0

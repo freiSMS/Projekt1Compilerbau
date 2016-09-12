@@ -1,0 +1,116 @@
+let lazy end=mult(1,2)
+	mult(x,y) { x*y }
+	count(start) { end+6 }
+in count(0)
+
+
+CONST 0
+TRAMLABELCALLER key = 3  replaced index = 1  GOTO -1
+TRAMLABEL key = 4
+TRAMLABELCALLER key = 5  replaced index = 1  GOTO -1
+TRAMLABEL key = 6
+CONST 1
+CONST 2
+TRAMLABELCALLER key = 1  replaced index = 2  INVOKE 2 -1 0
+LAZYRETURN
+TRAMLABEL key = 5
+TRAMLABELCALLER key = 6  replaced index = 2  LAZY 0 -1
+TRAMLABELCALLER key = 7  replaced index = 1  GOTO -1
+TRAMLABEL key = 1
+LOAD 0 0
+LOAD 1 0
+MUL
+RETURN
+TRAMLABEL key = 7
+NOP
+TRAMLABELCALLER key = 8  replaced index = 1  GOTO -1
+TRAMLABEL key = 2
+LOAD 0 1
+CONST 6
+ADD
+RETURN
+TRAMLABEL key = 8
+NOP
+CONST 0
+TRAMLABELCALLER key = 2  replaced index = 2  INVOKE 1 -1 0
+RETURN
+TRAMLABEL key = 3
+TRAMLABELCALLER key = 4  replaced index = 2  INVOKE 1 -1 0
+
+Replacing labels
+
+CONST 0
+GOTO 23
+GOTO 7
+CONST 1
+CONST 2
+INVOKE 2 9 0
+LAZYRETURN
+LAZY 0 3
+GOTO 13
+LOAD 0 0
+LOAD 1 0
+MUL
+RETURN
+NOP
+GOTO 19
+LOAD 0 1
+CONST 6
+ADD
+RETURN
+NOP
+CONST 0
+INVOKE 1 15 0
+RETURN
+INVOKE 1 2 0
+HALT
+Stack: 0, 
+ oberstes Stackelement: , Top = 0, PC = 1, PP: 0, FP: 0
+Stack: 0, 
+ oberstes Stackelement: , Top = 0, PC = 23, PP: 0, FP: 0
+Stack: 0, 0, 0, 0, 0, 24, 
+ oberstes Stackelement: 24, Top = 5, PC = 2, PP: 0, FP: 1
+Stack: 0, 0, 0, 0, 0, 24, 
+ oberstes Stackelement: 24, Top = 5, PC = 7, PP: 0, FP: 1
+Stack: 6, 0, 0, 0, 0, 24, 3, 1, 0, 
+ oberstes Stackelement: 0, Top = 8, PC = 8, PP: 0, FP: 1
+Stack: 6, 0, 0, 0, 0, 24, 3, 1, 0, 
+ oberstes Stackelement: 0, Top = 8, PC = 13, PP: 0, FP: 1
+Stack: 6, 0, 0, 0, 0, 24, 3, 1, 0, 
+ oberstes Stackelement: 0, Top = 8, PC = 14, PP: 0, FP: 1
+Stack: 6, 0, 0, 0, 0, 24, 3, 1, 0, 
+ oberstes Stackelement: 0, Top = 8, PC = 19, PP: 0, FP: 1
+Stack: 6, 0, 0, 0, 0, 24, 3, 1, 0, 
+ oberstes Stackelement: 0, Top = 8, PC = 20, PP: 0, FP: 1
+Stack: 6, 0, 0, 0, 0, 24, 3, 1, 0, 0, 
+ oberstes Stackelement: 0, Top = 9, PC = 21, PP: 0, FP: 1
+Stack: 6, 0, 0, 0, 0, 24, 3, 1, 0, 0, 0, 1, 0, 1, 22, 
+ oberstes Stackelement: 22, Top = 14, PC = 15, PP: 9, FP: 10
+Stack: 6, 0, 0, 0, 0, 24, 3, 1, 0, 0, 0, 1, 0, 1, 22, 16, 0, 10, 9, 
+ oberstes Stackelement: 9, Top = 18, PC = 3, PP: 0, FP: 1
+Stack: 6, 0, 0, 0, 0, 24, 3, 1, 0, 0, 0, 1, 0, 1, 22, 16, 0, 10, 9, 1, 
+ oberstes Stackelement: 1, Top = 19, PC = 4, PP: 0, FP: 1
+Stack: 6, 0, 0, 0, 0, 24, 3, 1, 0, 0, 0, 1, 0, 1, 22, 16, 0, 10, 9, 1, 2, 
+ oberstes Stackelement: 2, Top = 20, PC = 5, PP: 0, FP: 1
+Stack: 6, 0, 0, 0, 0, 24, 3, 1, 0, 0, 0, 1, 0, 1, 22, 16, 0, 10, 9, 1, 2, 0, 1, 0, 1, 6, 
+ oberstes Stackelement: 6, Top = 25, PC = 9, PP: 19, FP: 21
+Stack: 6, 0, 0, 0, 0, 24, 3, 1, 0, 0, 0, 1, 0, 1, 22, 16, 0, 10, 9, 1, 2, 0, 1, 0, 1, 6, 1, 
+ oberstes Stackelement: 1, Top = 26, PC = 10, PP: 19, FP: 21
+Stack: 6, 0, 0, 0, 0, 24, 3, 1, 0, 0, 0, 1, 0, 1, 22, 16, 0, 10, 9, 1, 2, 0, 1, 0, 1, 6, 1, 2, 
+ oberstes Stackelement: 2, Top = 27, PC = 11, PP: 19, FP: 21
+Stack: 6, 0, 0, 0, 0, 24, 3, 1, 0, 0, 0, 1, 0, 1, 22, 16, 0, 10, 9, 1, 2, 0, 1, 0, 1, 6, 2, 
+ oberstes Stackelement: 2, Top = 26, PC = 12, PP: 19, FP: 21
+Stack: 6, 0, 0, 0, 0, 24, 3, 1, 0, 0, 0, 1, 0, 1, 22, 16, 0, 10, 9, 2, 
+ oberstes Stackelement: 2, Top = 19, PC = 6, PP: 0, FP: 1
+Stack: 2, 0, 0, 0, 0, 24, 3, 1, 0, 0, 0, 1, 0, 1, 22, 2, 
+ oberstes Stackelement: 2, Top = 15, PC = 16, PP: 9, FP: 10
+Stack: 2, 0, 0, 0, 0, 24, 3, 1, 0, 0, 0, 1, 0, 1, 22, 2, 6, 
+ oberstes Stackelement: 6, Top = 16, PC = 17, PP: 9, FP: 10
+Stack: 2, 0, 0, 0, 0, 24, 3, 1, 0, 0, 0, 1, 0, 1, 22, 8, 
+ oberstes Stackelement: 8, Top = 15, PC = 18, PP: 9, FP: 10
+Stack: 2, 0, 0, 0, 0, 24, 3, 1, 0, 8, 
+ oberstes Stackelement: 8, Top = 9, PC = 22, PP: 0, FP: 1
+Stack: 8, 
+ oberstes Stackelement: , Top = 0, PC = 24, PP: 0, FP: 0
+Stack: 8, 
+ oberstes Stackelement: , Top = 0, PC = -1, PP: 0, FP: 0

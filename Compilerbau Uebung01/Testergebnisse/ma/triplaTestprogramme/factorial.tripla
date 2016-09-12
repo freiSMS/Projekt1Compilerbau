@@ -1,0 +1,187 @@
+let factorial(x) 
+    { 
+      if (x == 1) then 1
+      else factorial(x-1)*x 
+    } 
+in factorial(5) 
+
+TRAMLABELCALLER key = 2  replaced index = 1  GOTO -1
+TRAMLABEL key = 3
+TRAMLABELCALLER key = 4  replaced index = 1  GOTO -1
+TRAMLABEL key = 1
+LOAD 0 0
+CONST 1
+EQ
+TRAMLABELCALLER key = 5  replaced index = 1  IFZERO -1
+CONST 1
+TRAMLABELCALLER key = 6  replaced index = 1  GOTO -1
+TRAMLABEL key = 5
+LOAD 0 0
+CONST 1
+SUB
+TRAMLABELCALLER key = 1  replaced index = 2  INVOKE 1 -1 1
+LOAD 0 0
+MUL
+TRAMLABEL key = 6
+NOP
+RETURN
+TRAMLABEL key = 4
+NOP
+CONST 5
+TRAMLABELCALLER key = 1  replaced index = 2  INVOKE 1 -1 0
+RETURN
+TRAMLABEL key = 2
+TRAMLABELCALLER key = 3  replaced index = 2  INVOKE 0 -1 0
+
+Replacing labels
+
+GOTO 20
+GOTO 16
+LOAD 0 0
+CONST 1
+EQ
+IFZERO 8
+CONST 1
+GOTO 14
+LOAD 0 0
+CONST 1
+SUB
+INVOKE 1 2 1
+LOAD 0 0
+MUL
+NOP
+RETURN
+NOP
+CONST 5
+INVOKE 1 2 0
+RETURN
+INVOKE 0 1 0
+HALT
+Stack: 
+ oberstes Stackelement: , Top = -1, PC = 20, PP: 0, FP: 0
+Stack: 0, 0, 0, 0, 21, 
+ oberstes Stackelement: 21, Top = 4, PC = 1, PP: 0, FP: 0
+Stack: 0, 0, 0, 0, 21, 
+ oberstes Stackelement: 21, Top = 4, PC = 16, PP: 0, FP: 0
+Stack: 0, 0, 0, 0, 21, 
+ oberstes Stackelement: 21, Top = 4, PC = 17, PP: 0, FP: 0
+Stack: 0, 0, 0, 0, 21, 5, 
+ oberstes Stackelement: 5, Top = 5, PC = 18, PP: 0, FP: 0
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 
+ oberstes Stackelement: 19, Top = 10, PC = 2, PP: 5, FP: 6
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 5, 
+ oberstes Stackelement: 5, Top = 11, PC = 3, PP: 5, FP: 6
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 5, 1, 
+ oberstes Stackelement: 1, Top = 12, PC = 4, PP: 5, FP: 6
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 0, 
+ oberstes Stackelement: 0, Top = 11, PC = 5, PP: 5, FP: 6
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 
+ oberstes Stackelement: 19, Top = 10, PC = 8, PP: 5, FP: 6
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 5, 
+ oberstes Stackelement: 5, Top = 11, PC = 9, PP: 5, FP: 6
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 5, 1, 
+ oberstes Stackelement: 1, Top = 12, PC = 10, PP: 5, FP: 6
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 
+ oberstes Stackelement: 4, Top = 11, PC = 11, PP: 5, FP: 6
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 
+ oberstes Stackelement: 12, Top = 16, PC = 2, PP: 11, FP: 12
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 4, 
+ oberstes Stackelement: 4, Top = 17, PC = 3, PP: 11, FP: 12
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 4, 1, 
+ oberstes Stackelement: 1, Top = 18, PC = 4, PP: 11, FP: 12
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 0, 
+ oberstes Stackelement: 0, Top = 17, PC = 5, PP: 11, FP: 12
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 
+ oberstes Stackelement: 12, Top = 16, PC = 8, PP: 11, FP: 12
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 4, 
+ oberstes Stackelement: 4, Top = 17, PC = 9, PP: 11, FP: 12
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 4, 1, 
+ oberstes Stackelement: 1, Top = 18, PC = 10, PP: 11, FP: 12
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 
+ oberstes Stackelement: 3, Top = 17, PC = 11, PP: 11, FP: 12
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 11, 12, 0, 0, 12, 
+ oberstes Stackelement: 12, Top = 22, PC = 2, PP: 17, FP: 18
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 11, 12, 0, 0, 12, 3, 
+ oberstes Stackelement: 3, Top = 23, PC = 3, PP: 17, FP: 18
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 11, 12, 0, 0, 12, 3, 1, 
+ oberstes Stackelement: 1, Top = 24, PC = 4, PP: 17, FP: 18
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 11, 12, 0, 0, 12, 0, 
+ oberstes Stackelement: 0, Top = 23, PC = 5, PP: 17, FP: 18
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 11, 12, 0, 0, 12, 
+ oberstes Stackelement: 12, Top = 22, PC = 8, PP: 17, FP: 18
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 11, 12, 0, 0, 12, 3, 
+ oberstes Stackelement: 3, Top = 23, PC = 9, PP: 17, FP: 18
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 11, 12, 0, 0, 12, 3, 1, 
+ oberstes Stackelement: 1, Top = 24, PC = 10, PP: 17, FP: 18
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 11, 12, 0, 0, 12, 2, 
+ oberstes Stackelement: 2, Top = 23, PC = 11, PP: 17, FP: 18
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 11, 12, 0, 0, 12, 2, 17, 18, 0, 0, 12, 
+ oberstes Stackelement: 12, Top = 28, PC = 2, PP: 23, FP: 24
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 11, 12, 0, 0, 12, 2, 17, 18, 0, 0, 12, 2, 
+ oberstes Stackelement: 2, Top = 29, PC = 3, PP: 23, FP: 24
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 11, 12, 0, 0, 12, 2, 17, 18, 0, 0, 12, 2, 1, 
+ oberstes Stackelement: 1, Top = 30, PC = 4, PP: 23, FP: 24
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 11, 12, 0, 0, 12, 2, 17, 18, 0, 0, 12, 0, 
+ oberstes Stackelement: 0, Top = 29, PC = 5, PP: 23, FP: 24
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 11, 12, 0, 0, 12, 2, 17, 18, 0, 0, 12, 
+ oberstes Stackelement: 12, Top = 28, PC = 8, PP: 23, FP: 24
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 11, 12, 0, 0, 12, 2, 17, 18, 0, 0, 12, 2, 
+ oberstes Stackelement: 2, Top = 29, PC = 9, PP: 23, FP: 24
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 11, 12, 0, 0, 12, 2, 17, 18, 0, 0, 12, 2, 1, 
+ oberstes Stackelement: 1, Top = 30, PC = 10, PP: 23, FP: 24
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 11, 12, 0, 0, 12, 2, 17, 18, 0, 0, 12, 1, 
+ oberstes Stackelement: 1, Top = 29, PC = 11, PP: 23, FP: 24
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 11, 12, 0, 0, 12, 2, 17, 18, 0, 0, 12, 1, 23, 24, 0, 0, 12, 
+ oberstes Stackelement: 12, Top = 34, PC = 2, PP: 29, FP: 30
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 11, 12, 0, 0, 12, 2, 17, 18, 0, 0, 12, 1, 23, 24, 0, 0, 12, 1, 
+ oberstes Stackelement: 1, Top = 35, PC = 3, PP: 29, FP: 30
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 11, 12, 0, 0, 12, 2, 17, 18, 0, 0, 12, 1, 23, 24, 0, 0, 12, 1, 1, 
+ oberstes Stackelement: 1, Top = 36, PC = 4, PP: 29, FP: 30
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 11, 12, 0, 0, 12, 2, 17, 18, 0, 0, 12, 1, 23, 24, 0, 0, 12, 1, 
+ oberstes Stackelement: 1, Top = 35, PC = 5, PP: 29, FP: 30
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 11, 12, 0, 0, 12, 2, 17, 18, 0, 0, 12, 1, 23, 24, 0, 0, 12, 
+ oberstes Stackelement: 12, Top = 34, PC = 6, PP: 29, FP: 30
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 11, 12, 0, 0, 12, 2, 17, 18, 0, 0, 12, 1, 23, 24, 0, 0, 12, 1, 
+ oberstes Stackelement: 1, Top = 35, PC = 7, PP: 29, FP: 30
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 11, 12, 0, 0, 12, 2, 17, 18, 0, 0, 12, 1, 23, 24, 0, 0, 12, 1, 
+ oberstes Stackelement: 1, Top = 35, PC = 14, PP: 29, FP: 30
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 11, 12, 0, 0, 12, 2, 17, 18, 0, 0, 12, 1, 23, 24, 0, 0, 12, 1, 
+ oberstes Stackelement: 1, Top = 35, PC = 15, PP: 29, FP: 30
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 11, 12, 0, 0, 12, 2, 17, 18, 0, 0, 12, 1, 
+ oberstes Stackelement: 1, Top = 29, PC = 12, PP: 23, FP: 24
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 11, 12, 0, 0, 12, 2, 17, 18, 0, 0, 12, 1, 2, 
+ oberstes Stackelement: 2, Top = 30, PC = 13, PP: 23, FP: 24
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 11, 12, 0, 0, 12, 2, 17, 18, 0, 0, 12, 2, 
+ oberstes Stackelement: 2, Top = 29, PC = 14, PP: 23, FP: 24
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 11, 12, 0, 0, 12, 2, 17, 18, 0, 0, 12, 2, 
+ oberstes Stackelement: 2, Top = 29, PC = 15, PP: 23, FP: 24
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 11, 12, 0, 0, 12, 2, 
+ oberstes Stackelement: 2, Top = 23, PC = 12, PP: 17, FP: 18
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 11, 12, 0, 0, 12, 2, 3, 
+ oberstes Stackelement: 3, Top = 24, PC = 13, PP: 17, FP: 18
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 11, 12, 0, 0, 12, 6, 
+ oberstes Stackelement: 6, Top = 23, PC = 14, PP: 17, FP: 18
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 3, 11, 12, 0, 0, 12, 6, 
+ oberstes Stackelement: 6, Top = 23, PC = 15, PP: 17, FP: 18
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 6, 
+ oberstes Stackelement: 6, Top = 17, PC = 12, PP: 11, FP: 12
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 6, 4, 
+ oberstes Stackelement: 4, Top = 18, PC = 13, PP: 11, FP: 12
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 24, 
+ oberstes Stackelement: 24, Top = 17, PC = 14, PP: 11, FP: 12
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 4, 5, 6, 0, 0, 12, 24, 
+ oberstes Stackelement: 24, Top = 17, PC = 15, PP: 11, FP: 12
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 24, 
+ oberstes Stackelement: 24, Top = 11, PC = 12, PP: 5, FP: 6
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 24, 5, 
+ oberstes Stackelement: 5, Top = 12, PC = 13, PP: 5, FP: 6
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 120, 
+ oberstes Stackelement: 120, Top = 11, PC = 14, PP: 5, FP: 6
+Stack: 0, 0, 0, 0, 21, 5, 0, 0, 0, 0, 19, 120, 
+ oberstes Stackelement: 120, Top = 11, PC = 15, PP: 5, FP: 6
+Stack: 0, 0, 0, 0, 21, 120, 
+ oberstes Stackelement: 120, Top = 5, PC = 19, PP: 0, FP: 0
+Stack: 120, 
+ oberstes Stackelement: , Top = 0, PC = 21, PP: 0, FP: 0
+Stack: 120, 
+ oberstes Stackelement: , Top = 0, PC = -1, PP: 0, FP: 0

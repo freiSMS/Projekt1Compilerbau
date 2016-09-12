@@ -159,8 +159,9 @@ public class abstractMachine {
 
 				// Stack auslesen
 				StringBuilder deb = new StringBuilder();
-				for (LazyObject s: stack)	{
-					deb.append(s.val + ", ");
+				//for (LazyObject s: stack)	{
+				for (int i= 0; i<=top; i++)	{
+					deb.append(stack.get(i).val + ", ");
 				}
 				
 				deb.append("\n oberstes Stackelement: ");
