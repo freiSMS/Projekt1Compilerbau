@@ -396,7 +396,7 @@ public class CompilerFabrik {
 
 		for(int i=0; i<par.getChildren().size();i++)	{
 			String key = par.getChildren().get(i).getAttribute().toString();
-			rho2.put(key, new AddressPair(i, nl+1));//hier wird die variable a überschrieben -> woher weiß add wo sein a stand? -> muss ich rho clonen und nach der def berechnung verwerfen?
+			rho2.put(key, new AddressPair(i, nl+1));
 		}
 		tramCode.addAll(code(funcNode.getChildren().get(2).getChildren().get(0), nl+1, rho2)); //Expressioncode in body
 		tramCode.add(new Instruction(Instruction.RETURN));

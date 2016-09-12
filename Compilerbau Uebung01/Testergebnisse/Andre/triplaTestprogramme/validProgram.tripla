@@ -8,8 +8,6 @@ let mult(a,b) { a*b }
       in inc(a) }
 
 in add(mult(2,3),add(4,5))
-
-
 Doppelter Knoten vom Typ DEF gefunden.
 Doppelter Knoten vom Typ PARAMS gefunden.
 Doppelter Knoten vom Typ PARAMS gefunden.
