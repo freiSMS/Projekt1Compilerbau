@@ -75,7 +75,6 @@ precedence right ASSIGN;
 precedence nonassoc LT, GT, EQ, NEQ;
 precedence left ADD, SUB;
 precedence left MULT, DIV;
-precedence right ELSE;
 
 
 

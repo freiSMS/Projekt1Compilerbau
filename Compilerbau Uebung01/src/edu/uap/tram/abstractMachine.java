@@ -349,9 +349,9 @@ public class abstractMachine {
 			System.exit(-1);
 		}
 		if (stack.get(top - 1).val > stack.get(top).val) {
-			stack.push(top - 1, new LazyObject(0, abstractMachine.integer));
-		} else {
 			stack.push(top - 1, new LazyObject(1, abstractMachine.integer));
+		} else {
+			stack.push(top - 1, new LazyObject(0, abstractMachine.integer));
 		}
 		stack.remove(top);
 		top--;
